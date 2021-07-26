@@ -1,38 +1,203 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@100;400;700&display=swap");
+
+/*Global Styles */
+:root {
+    --color-white: 255, 255, 255;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    font-family: "Overpass", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* NavBar */
+
+.navbar {
+    height: 75px;
+    background-color: #2b2d42;
+    color: #bcbedc;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 999;
 }
 
-.App-link {
-  color: #61dafb;
+.icon-logo {
+    align-items: center;
+    display: inline-flex;
+    height: 55px;
+    justify-content: center;
+    width: 65px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wrap-guest {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
+    max-width: 1050px;
+    width: 100%;
+}
+
+.links {
+    align-items: center;
+    display: inline-flex;
+    font-size: 1.4rem;
+    font-weight: 600;
+    justify-content: center;
+    width: 100%;
+}
+
+.browse-wrap {
+    position: relative;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    padding: 18px 16px;
+    cursor: pointer;
+}
+
+.link-login {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 70px;
+    padding: 24px;
+    cursor: pointer;
+    line-height: 16px;
+}
+
+.link-signup {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    background-color: #3577ff;
+    border-radius: 6px;
+    color: rgb(var(--color-white));
+    padding: 10px 15px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Landing Page */
+
+.landing {
+    background: #0a1625;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-bottom: 70px;
+    max-width: 1100px;
+    padding: 60px 80px;
+    width: 100%;
+}
+
+.heading {
+    color: #f0f3f6;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sub-heading {
+    color: #acd5f2;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 30px;
+    margin: 0 auto;
+    max-width: 370px;
+    text-align: center;
+}
+
+.feature-cards {
+    display: grid;
+    grid-gap: 70px 60px;
+    row-gap: 70px;
+    column-gap: 60px;
+    grid-template-columns: repeat(2, minmax(300px, 400px));
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 90px;
+    margin-top: 85px;
+}
+
+.feature-card {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-gap: 40px;
+}
+
+.title {
+    color: #ecf6fe;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    margin: 0;
+    margin-bottom: 8px;
+    padding: 0;
+}
+
+.description {
+    color: #acd5f2;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.join-btn {
+    text-decoration: none;
+    align-items: center;
+    background: #3577ff;
+    border-radius: 30px;
+    box-shadow: 0 2px 40px rgb(0 0 0 / 40%);
+    display: grid;
+    grid-template-columns: auto 38px;
+    height: 49px;
+    padding-left: 20px;
+    padding-right: 7px;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: -78px;
+}
+
+.label {
+    color: #f7fafc;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 21px;
+    text-align: center;
+}
+
+.circle {
+    background: #d9e6ff;
+    color: #3577ff;
+    height: 37px;
+    padding-left: 3px;
+    width: 37px;
+    font-size: 20px;
+    border-radius: 50%;
+    align-items: center;
+    display: grid;
+    justify-content: center;
 }

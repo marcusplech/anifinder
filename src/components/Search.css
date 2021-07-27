@@ -1,0 +1,109 @@
+.search {
+    background: rgb(237, 241, 245);
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 auto;
+    min-width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.filters-wrap {
+    z-index: 700;
+    align-items: center;
+    /* display: grid;
+    grid-template-columns: auto 42px; */
+}
+
+.filters {
+    margin: 40px 0;
+    margin-bottom: 25px;
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(5, 170px);
+    justify-content: center;
+}
+
+.name {
+    color: rgb(81, 97, 112);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 0;
+}
+
+.search-wrap {
+    background: rgb(251, 251, 251);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(var(--color-shadow), 0.1),
+        0 4px 4px rgba(var(--color-shadow), 0.04);
+    display: grid;
+    font-size: 1.3rem;
+    font-weight: 600;
+    grid-gap: 10px;
+    grid-template-columns: 13px auto 13px;
+    letter-spacing: 0.03rem;
+    padding: 11px 16px;
+    padding-left: 13px;
+}
+
+.input-search {
+    background: 0 0;
+    border: none;
+    color: rgb(116, 136, 153);
+    display: inline-block;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.select-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.select {
+    align-items: center;
+    background: rgb(251, 251, 251);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(var(--color-shadow-), 0.1),
+        0 4px 4px rgba(var(--color-shadow-), 0.04);
+    display: grid;
+    font-weight: 600;
+    font-size: 13px;
+    grid-template-columns: auto 20px;
+    letter-spacing: 0.03rem;
+    padding: 7px 16px 7px 13px;
+}
+
+.value-wrap {
+    position: relative;
+    max-height: 14px;
+}
+
+.placeholder {
+    color: rgb(173, 192, 210);
+    position: absolute;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.filter {
+    background: 0 0;
+    border: none;
+    display: inline-block;
+    margin: 0;
+    outline: 0;
+    width: 100%;
+    color: rgb(116, 136, 153);
+    padding: 0;
+}
+
+.chevrondown {
+    color: rgb(201, 215, 227);
+    cursor: pointer;
+}

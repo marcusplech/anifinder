@@ -1,0 +1,4 @@
+export const FETCH_TRENDING = "FETCH_TRENDING";
+export const FETCH_RATED = "FETCH_RATED";
+export const FETCH_AIRING = "FETCH_AIRING";
+export const FETCH_GENRES = "FETCH_GENRES";

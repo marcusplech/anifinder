@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import icon from "./layout/imgs/icons-search.svg";
 import axios from "axios";
 import "./Search.css";
+import { fetchShowCaseContent } from "../actions/fetchActions";
 
 const Search = () => {
     const [text, setText] = useState("");
+    const [genre, setGenre] = useState("");
+    // const [filters, setFilters] = useState("");
+    // const [year, setYear] = useState('')
+    // const [genre, setGenre] = useState('')
+    // const [genre, setGenre] = useState('')
     const [results, setResults] = useState([]);
     const [debouncedText, setDebouncedText] = useState();
 
@@ -19,25 +25,27 @@ const Search = () => {
     }, [text]);
 
     useEffect(() => {
-        console.log(text);
         const search = async () => {
             const { data } = await axios.get(
                 `https://kitsu.io/api/edge/anime?filter[text]=${text}`
             );
-            setResults(data);
+            setResults(data.data);
         };
         search();
     }, [debouncedText]);
+    console.log(results);
 
-    // const renderedResults = results.map((result) => {
-    //     return (
-    //         <div className="item">
-    //             <div className="content">
-    //                 <div className="header">{result.title}</div>
-    //             </div>
-    //         </div>
-    //     );
-    // });
+    const renderedResults = results.map((result) => {
+        return (
+            <div className="item">
+                <div className="content">
+                    <div className="header">
+                        <img src={result.attributes.posterImage.tiny}></img>
+                    </div>
+                </div>
+            </div>
+        );
+    });
 
     return (
         <div className="search">
@@ -56,6 +64,7 @@ const Search = () => {
                                     }}
                                 ></img>
                                 <input
+                                    value={text}
                                     onChange={(e) => setText(e.target.value)}
                                     type="search"
                                     autoComplete="off"
@@ -68,8 +77,12 @@ const Search = () => {
                             <div className="select-wrap">
                                 <div className="select">
                                     <div className="value-wrap">
-                                        <div className="placeholder">Any</div>
                                         <input
+                                            value={genre}
+                                            placeholder="Any"
+                                            onChange={(e) =>
+                                                setGenre(e.target.value)
+                                            }
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
@@ -96,8 +109,11 @@ const Search = () => {
                             <div className="select-wrap">
                                 <div className="select">
                                     <div className="value-wrap">
-                                        <div className="placeholder">Any</div>
                                         <input
+                                            placeholder="Any"
+                                            onChange={(e) =>
+                                                setText(e.target.value)
+                                            }
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
@@ -175,6 +191,44 @@ const Search = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="filter-select">
+                            <div className="name">Airing Status</div>
+                            <div className="select-wrap">
+                                <div className="select">
+                                    <div className="value-wrap">
+                                        <div className="placeholder">Any</div>
+                                        <input
+                                            type="search"
+                                            autoComplete="off"
+                                            className="filter"
+                                        ></input>
+                                    </div>
+                                    <svg
+                                        className="chevrondown"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="search-landing">
+                    <div className="landing-section">
+                        <div className="title-link">
+                            <h3>Trending Now</h3>
+                            <div className="expand">View All</div>
+                        </div>
+
+                        <div className="results">{renderedResults}</div>
                     </div>
                 </div>
             </div>

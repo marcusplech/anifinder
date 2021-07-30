@@ -9,8 +9,7 @@ const Landing = () => {
         <div className="landing">
             <h1 className="heading">The next-generation anime platform</h1>
             <h2 className="sub-heading">
-                Track, share, and discover your favorite anime and manga with
-                AniList.
+                Track, share, and discover your favorite anime with AniList.
             </h2>
             <div className="feature-cards">
                 <div className="feature-card">

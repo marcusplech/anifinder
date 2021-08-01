@@ -118,7 +118,7 @@
     margin-top: 30px;
 }
 
-.landing-section {
+.landing-section-trending {
     margin-bottom: 50px;
 }
 
@@ -160,6 +160,10 @@
     .container {
         padding-left: 30px;
         padding-right: 30px;
+    }
+
+    .results {
+        grid-gap: 25px 20px;
     }
 }
 

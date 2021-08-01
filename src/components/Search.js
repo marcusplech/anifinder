@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import icon from "./layout/imgs/icons-search.svg";
 import axios from "axios";
 import "./Search.css";
-import { fetchShowCaseContent } from "../actions/fetchActions";
+import SearchLanding from "./SearchLanding";
+
+// import ShowCase from "./ShowCase";
 
 const Search = () => {
     const [text, setText] = useState("");
@@ -33,19 +35,22 @@ const Search = () => {
         };
         search();
     }, [debouncedText]);
-    console.log(results);
 
-    const renderedResults = results.map((result) => {
-        return (
-            <div className="item">
-                <div className="content">
-                    <div className="header">
-                        <img src={result.attributes.posterImage.tiny}></img>
-                    </div>
-                </div>
-            </div>
-        );
-    });
+    // const renderedResults = results.map((result) => {
+    //     return (
+    //         <div className="item">
+    //             <div className="content">
+    //                 <div className="header">
+    //                     <img
+    //                         key={result.attributes}
+    //                         src={result.attributes.posterImage.tiny}
+    //                         alt=""
+    //                     ></img>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // });
 
     return (
         <div className="search">
@@ -221,16 +226,7 @@ const Search = () => {
                         </div>
                     </div>
                 </div>
-                <div className="search-landing">
-                    <div className="landing-section">
-                        <div className="title-link">
-                            <h3>Trending Now</h3>
-                            <div className="expand">View All</div>
-                        </div>
-
-                        <div className="results">{renderedResults}</div>
-                    </div>
-                </div>
+                <SearchLanding />
             </div>
         </div>
     );

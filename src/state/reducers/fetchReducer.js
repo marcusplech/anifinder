@@ -3,16 +3,16 @@ import {
     FETCH_RATED,
     FETCH_AIRING,
     FETCH_GENRES,
-} from "../actions/types";
+} from "../action-creators/types";
 
-const initialState = {
+const INITIAL_STATE = {
     trending: [],
     rated: [],
     airing: [],
     genres: [],
 };
 
-const fetchReducer = (state = initialState, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_TRENDING:
             return {
@@ -44,4 +44,4 @@ const fetchReducer = (state = initialState, action) => {
     }
 };
 
-export default fetchReducer;
+export default reducer;

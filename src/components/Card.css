@@ -8,17 +8,16 @@
 }
 
 .cover {
-    background: rgba(221, 230, 238), 0.8;
+    background: rgba(221, 230, 238);
     border-radius: 4px;
-    box-shadow: 0 14px 30px rgba(103, 132, 187), 0.15,
-        0 4px 4px rgba(103, 132, 187), 0.05;
+    box-shadow: 0 14px 30px rgba(103, 132, 187);
     cursor: pointer;
     display: inline-block;
-    height: 265px;
     overflow: hidden;
     position: relative;
     width: 100%;
     z-index: 5;
+    height: 265px;
 }
 
 .background-color.image {

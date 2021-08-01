@@ -67,7 +67,7 @@ const Landing = () => {
             <a href="/signup" className="join-btn">
                 <div className="label">Join Now</div>
                 <div className="circle">
-                    <i class="fas fa-chevron-right"></i>
+                    <i className="fas fa-chevron-right"></i>
                 </div>
             </a>
         </div>

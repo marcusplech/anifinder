@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
-// import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
 // Import Components
 import NavBar from "./components/layout/NavBar";
-import Landing from "./components/layout/Landing";
-import Search from "./components/Search";
+import Home from "./components/Home";
+import SinglePageAnime from "./components/SinglePageAnime";
 import {
     fetchShowTrending,
     fetchShowAiring,
-    fetchShowGenres,
     fetchShowRated,
+    fetchShowComing,
 } from "./state/action-creators";
 
 const App = () => {
@@ -21,18 +20,16 @@ const App = () => {
     useEffect(() => {
         fetchShowTrending(dispatch);
         fetchShowAiring(dispatch);
-        fetchShowGenres(dispatch);
         fetchShowRated(dispatch);
+        fetchShowComing(dispatch);
     }, []);
 
     return (
-        <div className="App">
-            <NavBar />
-            <div className="page-content" style={{ marginTop: "50px" }}>
-                <Landing />
-                <Search />
-            </div>
-        </div>
+        <Router>
+            <Route path="/" exact component={NavBar} />
+            <Route path="/" exact component={Home} />
+            <Route path="/:slug/" exact component={SinglePageAnime} />
+        </Router>
     );
 };
 

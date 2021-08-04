@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./NavBar.css";
+import "./NavBarSinglePage.css";
 import logo from "./imgs/logo.svg";
 
-const NavBar = () => {
+const NavBarSinglePage = () => {
     return (
-        <div className="navbar">
+        <div className="navbarsingle">
             <div className="wrap-guest">
                 <a className="icon-logo" href="/">
                     <img
@@ -38,4 +38,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default NavBarSinglePage;

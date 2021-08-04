@@ -3,13 +3,14 @@ import {
     FETCH_RATED,
     FETCH_AIRING,
     FETCH_GENRES,
+    FETCH_COMING,
 } from "./types";
 
 // Buscas iniciais
 
 export const fetchShowTrending = async (dispatch) => {
     try {
-        fetch("https://kitsu.io/api/edge/trending/anime?limit=20?")
+        fetch("https://kitsu.io/api/edge/trending/anime?limit=5?")
             .then((data) => data.json())
             .then((data) =>
                 dispatch({ type: FETCH_TRENDING, payload: data.data })
@@ -19,10 +20,9 @@ export const fetchShowTrending = async (dispatch) => {
     }
 };
 export const fetchShowRated = async (dispatch) => {
-    console.log("AQUI FETCH_RATED");
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=5&sort=-averageRating"
+            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=5&sort=-averageRating"
         )
             .then((data) => data.json())
             .then((data) =>
@@ -32,11 +32,24 @@ export const fetchShowRated = async (dispatch) => {
         console.log(error);
     }
 };
-export const fetchShowAiring = async (dispatch) => {
-    console.log("AQUI FETCH_AIRING");
+export const fetchShowComing = async (dispatch) => {
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0&sort=-startDate&sort=-averageRating"
+            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=5&sort=-startDate"
+        )
+            .then((data) => data.json())
+            .then((data) =>
+                dispatch({ type: FETCH_COMING, payload: data.data })
+            );
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const fetchShowAiring = async (dispatch) => {
+    try {
+        fetch(
+            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0&sort=-startDate&sort=-averageRating"
         )
             .then((data) => data.json())
             .then((data) =>
@@ -47,7 +60,6 @@ export const fetchShowAiring = async (dispatch) => {
     }
 };
 export const fetchShowGenres = async (dispatch) => {
-    console.log("AQUI FETCH_genrES");
     try {
         fetch(
             "https://kitsu.io/api/edge/genres?page%5Blimit%5D=20&page%5Boffset%5D=0"

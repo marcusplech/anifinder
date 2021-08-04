@@ -1,56 +1,109 @@
 import React, { useState, useEffect } from "react";
 import icon from "./layout/imgs/icons-search.svg";
-import axios from "axios";
 import "./Search.css";
-import SearchLanding from "./SearchLanding";
 
-// import ShowCase from "./ShowCase";
+import HomeCards from "./HomeCards";
 
 const Search = () => {
     const [text, setText] = useState("");
-    const [genre, setGenre] = useState("");
-    // const [filters, setFilters] = useState("");
-    // const [year, setYear] = useState('')
-    // const [genre, setGenre] = useState('')
-    // const [genre, setGenre] = useState('')
+    const [genres, setGenres] = useState("");
+    const [airing, setAiring] = useState("");
+    const [format, setFormat] = useState("");
+    const [year, setYear] = useState("");
+
     const [results, setResults] = useState([]);
-    const [debouncedText, setDebouncedText] = useState();
+    const [genreResults, setGenreResults] = useState([]);
+    const [airingResults, setAiringResults] = useState([]);
+    const [formatResults, setFormatResults] = useState([]);
+    const [yearResults, setYearResults] = useState([]);
+    const [debouncedText, setDebouncedText] = useState(
+        text,
+        genres,
+        airing,
+        format
+    );
 
     useEffect(() => {
         const timerId = setTimeout(() => {
-            setDebouncedText(text);
+            setDebouncedText(text, genres, airing, format);
         }, 500);
 
         return () => {
             clearTimeout(timerId);
         };
-    }, [text]);
+    }, [text, genres, airing, format]);
 
     useEffect(() => {
-        const search = async () => {
-            const { data } = await axios.get(
-                `https://kitsu.io/api/edge/anime?filter[text]=${text}`
-            );
-            setResults(data.data);
+        const search = () => {
+            fetch(`https://kitsu.io/api/edge/anime?filter[text]=${text}`)
+                .then((res) => res.json())
+                .then((newData) => {
+                    setResults(newData.data);
+                });
         };
-        search();
-    }, [debouncedText]);
 
-    // const renderedResults = results.map((result) => {
-    //     return (
-    //         <div className="item">
-    //             <div className="content">
-    //                 <div className="header">
-    //                     <img
-    //                         key={result.attributes}
-    //                         src={result.attributes.posterImage.tiny}
-    //                         alt=""
-    //                     ></img>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // });
+        const getGenres = () => {
+            fetch(
+                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[genres]=${genres}&sort=popularityRank`
+            )
+                .then((res) => res.json())
+                .then((newData) => {
+                    setGenreResults(newData.data);
+                });
+        };
+        const getAiring = () => {
+            fetch(
+                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[status]=${airing}&sort=popularityRank`
+            )
+                .then((res) => res.json())
+                .then((newData) => {
+                    setAiringResults(newData.data);
+                });
+        };
+
+        const getFormat = () => {
+            fetch(
+                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[subtype]=${format}&sort=popularityRank`
+            )
+                .then((res) => res.json())
+                .then((newData) => {
+                    setFormatResults(newData.data);
+                });
+        };
+        // const getYear = () => {
+        //     fetch(`https://kitsu.io/api/edge/anime?filter[year]=${year}`)
+        //         .then((res) => res.json())
+        //         .then((newData) => {
+        //             setYearResults(newData.data);
+        //         });
+        // };
+        // getYear();
+        getFormat();
+        getAiring();
+        getGenres();
+        search();
+    }, [debouncedText, text, airing, format, genres]);
+
+    const renderedAnime = results.map((result) => {
+        return <div>{result.attributes.canonicalTitle}</div>;
+    });
+
+    const renderedGenre = genreResults.map((result) => {
+        return <div>{result.attributes.canonicalTitle}</div>;
+    });
+
+    const renderedFormat = formatResults.map((result) => {
+        return <div>{result.attributes.canonicalTitle}</div>;
+    });
+
+    const renderedYear = yearResults.map((result) => {
+        return <div>{result.attributes}</div>;
+    });
+    console.log(renderedYear);
+
+    const renderedAiring = airingResults.map((result) => {
+        return <div>{result.attributes.canonicalTitle}</div>;
+    });
 
     return (
         <div className="search">
@@ -83,10 +136,10 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
-                                            value={genre}
+                                            value={genres}
                                             placeholder="Any"
                                             onChange={(e) =>
-                                                setGenre(e.target.value)
+                                                setGenres(e.target.value)
                                             }
                                             type="search"
                                             autoComplete="off"
@@ -115,38 +168,11 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
+                                            value={year}
                                             placeholder="Any"
                                             onChange={(e) =>
-                                                setText(e.target.value)
+                                                setYear(e.target.value)
                                             }
-                                            type="search"
-                                            autoComplete="off"
-                                            className="filter"
-                                        ></input>
-                                    </div>
-                                    <svg
-                                        className="chevrondown"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="filter-select">
-                            <div className="name">Season</div>
-                            <div className="select-wrap">
-                                <div className="select">
-                                    <div className="value-wrap">
-                                        <div className="placeholder">Any</div>
-                                        <input
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
@@ -173,8 +199,12 @@ const Search = () => {
                             <div className="select-wrap">
                                 <div className="select">
                                     <div className="value-wrap">
-                                        <div className="placeholder">Any</div>
                                         <input
+                                            value={format}
+                                            placeholder="Any"
+                                            onChange={(e) =>
+                                                setFormat(e.target.value)
+                                            }
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
@@ -201,8 +231,12 @@ const Search = () => {
                             <div className="select-wrap">
                                 <div className="select">
                                     <div className="value-wrap">
-                                        <div className="placeholder">Any</div>
                                         <input
+                                            value={airing}
+                                            placeholder="Any"
+                                            onChange={(e) =>
+                                                setAiring(e.target.value)
+                                            }
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
@@ -226,7 +260,12 @@ const Search = () => {
                         </div>
                     </div>
                 </div>
-                <SearchLanding />
+                <div>{renderedAnime}</div>
+                <div>{renderedGenre}</div>
+                <div>{renderedFormat}</div>
+                <div>{renderedAiring}</div>
+                <div>{renderedYear}</div>
+                <HomeCards />
             </div>
         </div>
     );

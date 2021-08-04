@@ -1,8 +1,10 @@
 import React from "react";
+import "./Landing.css";
 import stats from "./imgs/stats.svg";
 import social from "./imgs/social.svg";
 import apps from "./imgs/apps.svg";
 import custom from "./imgs/custom.svg";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
     return (
@@ -64,12 +66,12 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-            <a href="/signup" className="join-btn">
+            <Link to="/signup" className="join-btn">
                 <div className="label">Join Now</div>
                 <div className="circle">
                     <i className="fas fa-chevron-right"></i>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 };

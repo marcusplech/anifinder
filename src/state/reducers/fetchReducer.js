@@ -3,6 +3,7 @@ import {
     FETCH_RATED,
     FETCH_AIRING,
     FETCH_GENRES,
+    FETCH_COMING,
 } from "../action-creators/types";
 
 const INITIAL_STATE = {
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
     rated: [],
     airing: [],
     genres: [],
+    coming: [],
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -37,6 +39,12 @@ const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 genres: action.payload,
+                status: action.status,
+            };
+        case FETCH_COMING:
+            return {
+                ...state,
+                coming: action.payload,
                 status: action.status,
             };
         default:

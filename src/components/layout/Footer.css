@@ -1,0 +1,55 @@
+.wrap {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.footer {
+    background: #11161d;
+    color: #7a858f;
+    color: #a0b1c5;
+    font-family: Overpass, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: 600;
+    margin-top: 20px;
+    min-height: 100px;
+    padding: 50px 30px;
+    text-align: left;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    margin: 0 auto;
+    min-width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.h2-footer {
+    color: #3db4f2;
+    font-size: 16px;
+    font-weight: 700;
+    padding-bottom: 14px;
+}
+
+.light-theme {
+    background: #edf1f5;
+    color: #2e3c48;
+}
+
+.footer-links {
+    display: flex;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+/* RESPONSIVIDADE */
+@media (min-width: 1040px) and (max-width: 1540px) {
+    .footer-container {
+        max-width: 1140px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}

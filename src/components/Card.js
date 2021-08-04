@@ -1,28 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./Card.css";
 
-import { selectors } from "../selectors/returns";
-
-const Card = () => {
-    const stateTrending = useSelector(selectors.getTrending);
-    const image = stateTrending.map((e) => e.attributes.posterImage.tiny);
-    console.log(image.forEach((e) => e));
-    // console.log(state.map((e) => e));
-
+const Card = (props) => {
     return (
-        <div className="media-card">
-            <a className="cover">
+        <Link to={`/${props.data.slug}`} className="media-card">
+            <div className="cover">
                 <img
-                    key={`${Image}`}
-                    src={`${image[0]}`}
-                    alt="poster anime"
+                    className="image-load"
+                    key={props.data.posterImage.small}
+                    src={props.data.posterImage.small}
+                    alt={`Capa de fundo ${props.data.canonicalTitle}`}
                 ></img>
-            </a>
-            <a href="/" className="title">
-                {/* {state.map((e) => e.attributes.canonicalTitle)} */}
-            </a>
-            {/* <div className="hover-data">
+            </div>
+            <span className="title-card">{props.data.canonicalTitle}</span>
+            <div className="hover-data right">
                 <div className="header">
                     <div className="studios"></div>
                     <div className="info">
@@ -32,8 +24,8 @@ const Card = () => {
                         </div>
                     </div>
                 </div>
-            </div> */}
-        </div>
+            </div>
+        </Link>
     );
 };
 

@@ -8,13 +8,6 @@
     text-decoration: none;
 }
 
-.media-card:hover {
-    --media-text: hsl(202, 57%, 40%);
-    --media-background: hsl(202, 57%, 89%);
-    --media-background-text: hsl(202, 57%, 25%);
-    --media-overlay-text: hsl(202, 80%, 70%);
-}
-
 .cover {
     background: rgba(221, 230, 238);
     border-radius: 4px;
@@ -53,13 +46,11 @@ img.image-load {
     margin-top: 10px;
     overflow: hidden;
     transition: color 0.2s ease;
-    display: -webkit-box;
     cursor: pointer;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
 }
 
 .hover-data.right {
+    visibility: hidden;
     margin-left: 18px;
     left: 100%;
     background: rgb(251, 251, 251);
@@ -76,6 +67,9 @@ img.image-load {
     user-select: none;
     width: 100%;
     z-index: 10;
+}
+.hover-data.right:hover {
+    visibility: visible;
 }
 
 .hover-data.right::before {

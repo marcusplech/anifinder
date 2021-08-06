@@ -7,11 +7,13 @@ import "./App.css";
 import NavBar from "./components/layout/NavBar";
 import Home from "./components/Home";
 import SinglePageAnime from "./components/SinglePageAnime";
+import Footer from "./components/layout/Footer";
 import {
     fetchShowTrending,
     fetchShowAiring,
     fetchShowRated,
     fetchShowComing,
+    fetchShowGenres,
 } from "./state/action-creators";
 
 const App = () => {
@@ -22,13 +24,21 @@ const App = () => {
         fetchShowAiring(dispatch);
         fetchShowRated(dispatch);
         fetchShowComing(dispatch);
+        fetchShowGenres(dispatch);
     }, []);
 
     return (
         <Router>
-            <Route path="/" exact component={NavBar} />
-            <Route path="/" exact component={Home} />
-            <Route path="/:slug/" exact component={SinglePageAnime} />
+            <NavBar />
+            <div>
+                <Route path="/" exact component={Home} />
+                <Route
+                    path="/:slug/:totalLength"
+                    exact
+                    component={SinglePageAnime}
+                />
+            </div>
+            <Footer />
         </Router>
     );
 };

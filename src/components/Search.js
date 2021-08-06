@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import icon from "./layout/imgs/icons-search.svg";
 import "./Search.css";
+
+import { selectors } from "../selectors/returns";
+import { useSelector } from "react-redux";
 
 import HomeCards from "./HomeCards";
 
 const Search = () => {
+    const stateGenres = useSelector(selectors.getGenres);
+
     const [text, setText] = useState("");
     const [genres, setGenres] = useState("");
     const [airing, setAiring] = useState("");
@@ -20,18 +25,43 @@ const Search = () => {
         text,
         genres,
         airing,
-        format
+        format,
+        year
     );
+
+    //DROPDOWN
+    const [openGenres, setOpenGenres] = useState(false);
+    const [openFormat, setOpenFormat] = useState(false);
+    const [openAiring, setOpenAiring] = useState(false);
+    const [openYear, setOpenYear] = useState(false);
+
+    const ref = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                setOpenFormat(!setOpenFormat);
+                setOpenGenres(!setOpenGenres);
+                setOpenAiring(!setOpenAiring);
+                setOpenYear(!setOpenYear);
+            }
+        };
+
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [ref]);
 
     useEffect(() => {
         const timerId = setTimeout(() => {
-            setDebouncedText(text, genres, airing, format);
+            setDebouncedText(text, genres, airing, format, year);
         }, 500);
 
         return () => {
             clearTimeout(timerId);
         };
-    }, [text, genres, airing, format]);
+    }, [text, genres, airing, format, year]);
 
     useEffect(() => {
         const search = () => {
@@ -70,46 +100,67 @@ const Search = () => {
                     setFormatResults(newData.data);
                 });
         };
-        // const getYear = () => {
-        //     fetch(`https://kitsu.io/api/edge/anime?filter[year]=${year}`)
-        //         .then((res) => res.json())
-        //         .then((newData) => {
-        //             setYearResults(newData.data);
-        //         });
-        // };
-        // getYear();
+        const getYear = () => {
+            fetch(`https://kitsu.io/api/edge/anime?filter[year]=${year}`)
+                .then((res) => res.json())
+                .then((newData) => {
+                    setYearResults(newData.data);
+                });
+        };
+        getYear();
         getFormat();
         getAiring();
         getGenres();
         search();
-    }, [debouncedText, text, airing, format, genres]);
+    }, [debouncedText, text, airing, format, genres, year]);
 
-    const renderedAnime = results.map((result) => {
+    const getStateGenres = stateGenres?.map((result) => {
+        return (
+            <div className="option">
+                <label style={{ cursor: "pointer" }}>
+                    {result.attributes.name}
+                </label>
+            </div>
+        );
+    });
+
+    const arrYears = Array.from({ length: 40 }, (_, i) => 2024 - i);
+
+    const years = arrYears?.map((result) => {
+        return (
+            <div className="option">
+                <label style={{ cursor: "pointer" }}>{result}</label>
+            </div>
+        );
+    });
+
+    const renderedAnime = results?.map((result) => {
         return <div>{result.attributes.canonicalTitle}</div>;
     });
 
-    const renderedGenre = genreResults.map((result) => {
+    const renderedGenre = genreResults?.map((result) => {
         return <div>{result.attributes.canonicalTitle}</div>;
     });
 
-    const renderedFormat = formatResults.map((result) => {
+    const renderedFormat = formatResults?.map((result) => {
         return <div>{result.attributes.canonicalTitle}</div>;
     });
 
-    const renderedYear = yearResults.map((result) => {
-        return <div>{result.attributes}</div>;
-    });
-    console.log(renderedYear);
-
-    const renderedAiring = airingResults.map((result) => {
+    const renderedYear = yearResults?.map((result) => {
         return <div>{result.attributes.canonicalTitle}</div>;
     });
+
+    const renderedAiring = airingResults?.map((result) => {
+        return <div>{result.attributes.canonicalTitle}</div>;
+    });
+
+    const handleChange = () => {};
 
     return (
         <div className="search">
             <div className="container">
                 <div className="filters-wrap">
-                    <div className="filters">
+                    <div ref={ref} className="filters">
                         <div className="filter-select">
                             <div className="name">Search</div>
                             <div className="search-wrap">
@@ -136,6 +187,9 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
+                                            onClick={() =>
+                                                setOpenGenres(!openGenres)
+                                            }
                                             value={genres}
                                             placeholder="Any"
                                             onChange={(e) =>
@@ -147,6 +201,9 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
+                                        onClick={() =>
+                                            setOpenGenres(!openGenres)
+                                        }
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -159,6 +216,25 @@ const Search = () => {
                                             fill="currentColor"
                                         />
                                     </svg>
+                                    <div
+                                        className={`open menu${
+                                            openGenres ? "active" : ""
+                                        }`}
+                                    >
+                                        <div className="ps-container">
+                                            <div
+                                                className="option-group"
+                                                onClick={() =>
+                                                    setOpenGenres(false)
+                                                }
+                                            >
+                                                <div className="group-title">
+                                                    Genres
+                                                </div>
+                                                {getStateGenres}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,6 +244,9 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
+                                            onClick={() =>
+                                                setOpenYear(!openYear)
+                                            }
                                             value={year}
                                             placeholder="Any"
                                             onChange={(e) =>
@@ -179,6 +258,7 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
+                                        onClick={() => setOpenYear(!openYear)}
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -191,6 +271,25 @@ const Search = () => {
                                             fill="currentColor"
                                         />
                                     </svg>
+                                    <div
+                                        className={`open menu${
+                                            openYear ? "active" : ""
+                                        }`}
+                                    >
+                                        <div className="ps-container">
+                                            <div
+                                                className="option-group"
+                                                onClick={() =>
+                                                    setOpenYear(false)
+                                                }
+                                            >
+                                                <div className="group-title">
+                                                    Years
+                                                </div>
+                                                {years}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -200,6 +299,9 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
+                                            onClick={() =>
+                                                setOpenFormat(!openFormat)
+                                            }
                                             value={format}
                                             placeholder="Any"
                                             onChange={(e) =>
@@ -211,6 +313,9 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
+                                        onClick={() =>
+                                            setOpenFormat(!openFormat)
+                                        }
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -223,6 +328,42 @@ const Search = () => {
                                             fill="currentColor"
                                         />
                                     </svg>
+                                    <div
+                                        className={`open menu${
+                                            openFormat ? "active" : ""
+                                        }`}
+                                    >
+                                        <div className="ps-container">
+                                            <div
+                                                className="option-group"
+                                                onClick={() =>
+                                                    setOpenFormat(false)
+                                                }
+                                            >
+                                                <div className="option">
+                                                    <label>TV Show</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>Movie</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>TV Short</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>Special</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>OVA</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>ONA</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>Music</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -232,6 +373,9 @@ const Search = () => {
                                 <div className="select">
                                     <div className="value-wrap">
                                         <input
+                                            onClick={() =>
+                                                setOpenAiring(!openAiring)
+                                            }
                                             value={airing}
                                             placeholder="Any"
                                             onChange={(e) =>
@@ -243,6 +387,9 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
+                                        onClick={() =>
+                                            setOpenAiring(!openAiring)
+                                        }
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -255,6 +402,32 @@ const Search = () => {
                                             fill="currentColor"
                                         />
                                     </svg>
+                                    <div
+                                        className={`open menu${
+                                            openAiring ? "active" : ""
+                                        }`}
+                                    >
+                                        <div className="ps-container">
+                                            <div
+                                                onClick={() =>
+                                                    setOpenAiring(false)
+                                                }
+                                                className="option-group"
+                                            >
+                                                <div className="option">
+                                                    <label>Finished</label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>
+                                                        Not Yet Released
+                                                    </label>
+                                                </div>
+                                                <div className="option">
+                                                    <label>Cancelled</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

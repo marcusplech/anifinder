@@ -61,6 +61,78 @@
     width: 100%;
 }
 
+.open {
+    background: rgb(251, 251, 251);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(103, 132, 187, 0.15),
+        0 4px 4px rgba(103, 132, 187, 0.05);
+    left: 0;
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 100%;
+    z-index: 50;
+}
+
+.ps-container {
+    max-height: 500px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 10px;
+    position: relative;
+}
+
+.option {
+    margin-top: 0;
+}
+
+.open.menu.active {
+    background: rgb(251, 251, 251);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(103, 132, 187, 0.15),
+        0 4px 4px rgba(103, 132, 187, 0.05);
+    left: 0;
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 100%;
+    z-index: 50;
+}
+.group-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06rem;
+    padding: 4px;
+    text-transform: uppercase;
+    user-select: none;
+    color: #5c728a;
+}
+
+.open.menu {
+    transform: scale(0);
+    transition: all 0.3s ease;
+    margin-top: 18px;
+}
+
+.option {
+    cursor: pointer;
+    border-radius: 4px;
+    color: rgb(116, 136, 153);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 12px;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+    white-space: normal;
+}
+
+.option:hover {
+    color: rgb(61, 180, 242);
+    background: rgba(237, 241, 245, 0.6);
+}
+
+.open.options {
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
 .select-wrap {
     position: relative;
     width: 100%;
@@ -78,6 +150,18 @@
     grid-template-columns: auto 20px;
     letter-spacing: 0.03rem;
     padding: 7px 16px 7px 13px;
+}
+
+.options-genres {
+    background: rgb(251, 251, 251);
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(103, 132, 187, 0.15),
+        0 4px 4px rgba(103, 132, 187, 0.05);
+    left: 0;
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 100%;
+    z-index: 50;
 }
 
 .value-wrap {
@@ -100,14 +184,6 @@
     outline: 0;
     padding: 0;
 }
-
-/* .filter:-webkit-input-placeholder {
-    color: rgb(173, 192, 210);
-}
-
-.filter:focus::-webkit-input-placeholder {
-    color: transparent;
-} */
 
 .chevrondown {
     color: rgb(201, 215, 227);

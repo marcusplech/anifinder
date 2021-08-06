@@ -4,7 +4,10 @@ import "./Card.css";
 
 const Card = (props) => {
     return (
-        <Link to={`/${props.data.slug}`} className="media-card">
+        <Link
+            to={`/${props.data.slug}/${props.data.totalLength}`}
+            className="media-card"
+        >
             <div className="cover">
                 <img
                     className="image-load"

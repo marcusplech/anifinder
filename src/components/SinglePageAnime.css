@@ -115,6 +115,35 @@
     height: 100%;
 }
 
+.span-dropdown {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.single-chevrondown {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.svg-heart {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
+}
+
 .content-single {
     display: inline-grid;
     grid-template-rows: -webkit-min-content -webkit-min-content auto;
@@ -131,6 +160,14 @@
     text-transform: capitalize;
 }
 
+.content.container {
+    display: grid;
+    grid-column-gap: 40px;
+    grid-template-columns: 208px auto;
+    margin-top: 30px;
+    position: relative;
+}
+
 .description-single {
     color: rgb(122, 133, 143);
     font-size: 14px;
@@ -140,6 +177,40 @@
     padding: 15px 0;
     transition: 0.2s;
     font-family: "Roboto", sans-serif;
+}
+
+.sidebar {
+    margin-top: 0;
+}
+
+.data {
+    background: rgb(250, 250, 250);
+    border-radius: 3px;
+    padding: 18px;
+}
+
+.data-set {
+    padding-bottom: 14px;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    text-transform: capitalize;
+}
+
+.type {
+    font-size: 13px;
+    font-weight: 500;
+    color: #7f90a3;
+    text-decoration: none solid rgb(92, 114, 138);
+    padding-bottom: 5px;
+    line-height: 14.95px;
+}
+
+.value {
+    font-size: 12px;
+    color: #9299a1;
+    text-decoration: none solid rgb(146, 153, 161);
+    line-height: 15.6px;
+    color: #aaafb6;
 }
 
 /* RESPONSIVIDADE */

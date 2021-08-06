@@ -108,3 +108,10 @@
     display: grid;
     justify-content: center;
 }
+
+@media (max-width: 1040px) {
+    .landing {
+        border-radius: 0;
+        padding: 70px 50px;
+    }
+}

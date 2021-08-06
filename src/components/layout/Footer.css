@@ -15,6 +15,21 @@
     padding: 50px 30px;
     text-align: left;
     width: 100%;
+    height: 285px;
+}
+
+.footer-a {
+    display: block;
+    padding: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: 0.15s;
+    outline: 0;
+    cursor: pointer;
+}
+
+.footer-a:hover {
+    color: rgb(61, 180, 242);
 }
 
 .footer-container {
@@ -36,6 +51,29 @@
 .light-theme {
     background: #edf1f5;
     color: #2e3c48;
+    border-radius: 3px;
+    border: 2px solid #46546b;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    height: 25px;
+    margin-right: 10px;
+    padding-left: 2px;
+    padding-top: 5px;
+    width: 25px;
+}
+
+.dark-theme {
+    border-radius: 3px;
+    border: 2px solid #46546b;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    height: 25px;
+    margin-right: 10px;
+    padding-left: 2px;
+    padding-top: 5px;
+    width: 25px;
 }
 
 .footer-links {
@@ -45,11 +83,21 @@
     margin-left: auto;
 }
 
+.footer-section {
+    margin-left: 80px;
+}
+
 /* RESPONSIVIDADE */
 @media (min-width: 1040px) and (max-width: 1540px) {
     .footer-container {
         max-width: 1140px;
         padding-left: 50px;
         padding-right: 50px;
+    }
+}
+
+@media (max-width: 1540px) {
+    .footer-section {
+        margin-left: 60px;
     }
 }

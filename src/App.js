@@ -30,7 +30,7 @@ const App = () => {
     return (
         <Router>
             <NavBar />
-            <div>
+            <div style={{ gridTemplateRows: "auto 1fr auto" }}>
                 <Route path="/" exact component={Home} />
                 <Route
                     path="/:slug/:totalLength"

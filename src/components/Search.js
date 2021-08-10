@@ -6,9 +6,11 @@ import { selectors } from "../selectors/returns";
 import { useSelector } from "react-redux";
 
 import HomeCards from "./HomeCards";
+import Card from "./Card";
 
 const Search = () => {
     const stateGenres = useSelector(selectors.getGenres);
+    const [selectValue, setSelectValue] = useState([]);
 
     const [text, setText] = useState("");
     const [genres, setGenres] = useState("");
@@ -74,7 +76,7 @@ const Search = () => {
 
         const getGenres = () => {
             fetch(
-                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[genres]=${genres}&sort=popularityRank`
+                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[genres]=${selectValue}&sort=popularityRank`
             )
                 .then((res) => res.json())
                 .then((newData) => {
@@ -112,49 +114,69 @@ const Search = () => {
         getAiring();
         getGenres();
         search();
-    }, [debouncedText, text, airing, format, genres, year]);
+    }, [debouncedText, text, airing, format, genres, year, selectValue]);
 
-    const getStateGenres = stateGenres?.map((result) => {
+    const getStateGenres = stateGenres?.map((result, i) => {
         return (
-            <div className="option">
-                <label style={{ cursor: "pointer" }}>
-                    {result.attributes.name}
-                </label>
+            <div
+                key={i}
+                onClick={(e) => setSelectValue(e.target.innerHTML)}
+                value={result}
+                type="submit"
+                className="option"
+            >
+                {result.attributes.name}
             </div>
         );
     });
 
     const arrYears = Array.from({ length: 40 }, (_, i) => 2024 - i);
 
-    const years = arrYears?.map((result) => {
+    const years = arrYears?.map((result, i) => {
         return (
-            <div className="option">
+            <div key={i} className="option">
                 <label style={{ cursor: "pointer" }}>{result}</label>
             </div>
         );
     });
 
     const renderedAnime = results?.map((result) => {
-        return <div>{result.attributes.canonicalTitle}</div>;
+        return <div key={result.id}>{result.attributes.canonicalTitle}</div>;
     });
 
-    const renderedGenre = genreResults?.map((result) => {
-        return <div>{result.attributes.canonicalTitle}</div>;
+    const renderedGenre = genreResults?.map((resultGenre, i) => {
+        return <div key={i}>{resultGenre.attributes.canonicalTitle}</div>;
     });
 
-    const renderedFormat = formatResults?.map((result) => {
-        return <div>{result.attributes.canonicalTitle}</div>;
+    const renderedFormat = formatResults?.map((resultFormat, i) => {
+        return <div key={i}>{resultFormat.attributes.canonicalTitle}</div>;
     });
 
-    const renderedYear = yearResults?.map((result) => {
-        return <div>{result.attributes.canonicalTitle}</div>;
+    const renderedYear = yearResults?.map((resultYear, i) => {
+        return <div key={i}>{resultYear.attributes.canonicalTitle}</div>;
     });
 
-    const renderedAiring = airingResults?.map((result) => {
-        return <div>{result.attributes.canonicalTitle}</div>;
+    const renderedAiring = airingResults?.map((resultAiring, i) => {
+        return <div key={i}>{resultAiring.attributes.canonicalTitle}</div>;
     });
 
-    const handleChange = () => {};
+    // if (
+    //     renderedAiring ||
+    //     renderedAnime ||
+    //     renderedFormat ||
+    //     renderedYear ||
+    //     renderedGenre
+    // ) {
+    //     return (
+    //         { renderedAiring },
+    //         { renderedGenre },
+    //         { renderedAnime },
+    //         { renderedFormat },
+    //         { renderedYear }
+    //     );
+    // } else {
+    //     <Card />;
+    // }
 
     return (
         <div className="search">
@@ -185,21 +207,16 @@ const Search = () => {
                             <div className="name">Genres</div>
                             <div className="select-wrap">
                                 <div className="select">
-                                    <div className="value-wrap">
-                                        <input
-                                            onClick={() =>
-                                                setOpenGenres(!openGenres)
-                                            }
-                                            value={genres}
-                                            placeholder="Any"
-                                            onChange={(e) =>
-                                                setGenres(e.target.value)
-                                            }
-                                            type="search"
-                                            autoComplete="off"
-                                            className="filter"
-                                        ></input>
-                                    </div>
+                                    <input
+                                        onClick={() =>
+                                            setOpenGenres(!openGenres)
+                                        }
+                                        value={selectValue}
+                                        placeholder="Any"
+                                        type="search"
+                                        autoComplete="off"
+                                        className="filter"
+                                    ></input>
                                     <svg
                                         onClick={() =>
                                             setOpenGenres(!openGenres)
@@ -216,23 +233,21 @@ const Search = () => {
                                             fill="currentColor"
                                         />
                                     </svg>
-                                    <div
-                                        className={`open menu${
-                                            openGenres ? "active" : ""
-                                        }`}
-                                    >
-                                        <div className="ps-container">
-                                            <div
-                                                className="option-group"
-                                                onClick={() =>
-                                                    setOpenGenres(false)
-                                                }
-                                            >
-                                                <div className="group-title">
-                                                    Genres
-                                                </div>
-                                                {getStateGenres}
+                                </div>
+                                <div
+                                    className={`open menu${
+                                        openGenres ? "active" : ""
+                                    }`}
+                                >
+                                    <div className="ps-container">
+                                        <div
+                                            className="option-group"
+                                            onClick={() => setOpenGenres(false)}
+                                        >
+                                            <div className="group-title">
+                                                Genres
                                             </div>
+                                            {getStateGenres}
                                         </div>
                                     </div>
                                 </div>
@@ -241,7 +256,7 @@ const Search = () => {
                         <div className="filter-select">
                             <div className="name">Year</div>
                             <div className="select-wrap">
-                                <div className="select">
+                                <div id="select" className="select">
                                     <div className="value-wrap">
                                         <input
                                             onClick={() =>
@@ -438,7 +453,7 @@ const Search = () => {
                 <div>{renderedFormat}</div>
                 <div>{renderedAiring}</div>
                 <div>{renderedYear}</div>
-                <HomeCards />
+                <HomeCards key={Card} />
             </div>
         </div>
     );

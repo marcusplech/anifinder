@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Footer.css";
 
 const Footer = () => {
+    const [theme, setTheme] = useState(false);
+
     return (
         <div className="wrap">
             <div className="footer">
                 <div className="footer-container">
                     <div className="theme-selector">
                         <h2 className="h2-footer">Site Theme</h2>
-                        <div className="light-theme">A</div>
+                        <div
+                            onClick={() => console.log(setTheme(!theme))}
+                            className="light-theme"
+                        >
+                            A
+                        </div>
                         <div className="dark-theme">A</div>
                     </div>
                     <div className="footer-links">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import "./SinglePageAnime.css";
-import NavBarSinglePage from "./layout/NavBarSinglePage";
 
 const SinglePageAnime = (props) => {
     const id = props.location.pathname.split("/")[1];
@@ -29,6 +28,7 @@ const SinglePageAnime = (props) => {
             const format = singleAnimeData[0]?.attributes?.subtype;
             const epiDuration = singleAnimeData[0]?.attributes?.episodeLength;
             const ageRating = singleAnimeData[0]?.attributes?.ageRatingGuide;
+            console.log(singleAnimeData[0]?.attributes?.episodeCount);
             // const numberOfEpisodes =
             // singleAnimeData[0]?.attributes?.episodeCount;
             const engTitle = singleAnimeData[0]?.attributes?.titles.en;
@@ -40,7 +40,6 @@ const SinglePageAnime = (props) => {
 
             return (
                 <div className="singlepage-content">
-                    <NavBarSinglePage />
                     <div className="media-page">
                         <div className="header-wrap">
                             <div
@@ -140,10 +139,10 @@ const SinglePageAnime = (props) => {
                                     </div>
                                     <div className="data-set">
                                         <div className="type">
-                                            Average Rating
+                                            Community Approval
                                         </div>
                                         <div className="value">
-                                            {averageRating}
+                                            {`${averageRating}%`}
                                         </div>
                                     </div>
                                     <div className="data-set">
@@ -190,7 +189,7 @@ const SinglePageAnime = (props) => {
                 });
         };
         search();
-    }, [debouncedText]);
+    }, [debouncedText, id]);
 
     return <>{renderContent(props)}</>;
 };

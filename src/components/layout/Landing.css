@@ -115,3 +115,16 @@
         padding: 70px 50px;
     }
 }
+
+@media (max-width: 760px) {
+    .landing {
+        padding: 70px 40px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 410px) {
+    .landing {
+        padding: 70px 30px;
+    }
+}

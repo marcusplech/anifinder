@@ -8,6 +8,13 @@
     text-decoration: none;
 }
 
+.media-card:hover .hover-data.right {
+    animation: 0.22s;
+    opacity: 1;
+    color: hsl(42, 37%, 22%);
+    visibility: visible;
+}
+
 .cover {
     background: rgba(221, 230, 238);
     border-radius: 4px;
@@ -50,6 +57,7 @@ img.image-load {
 }
 
 .hover-data.right {
+    box-sizing: border-box;
     visibility: hidden;
     margin-left: 18px;
     left: 100%;
@@ -66,10 +74,8 @@ img.image-load {
     -ms-user-select: none;
     user-select: none;
     width: 100%;
+    transition: 0.5s;
     z-index: 10;
-}
-.hover-data.right:hover {
-    visibility: visible;
 }
 
 .hover-data.right::before {
@@ -84,6 +90,11 @@ img.image-load {
     right: 100%;
     position: absolute;
     top: 15%;
+    box-shadow: 0 14px 30px rgba(103, 132, 187, 0.1),
+        0 4px 4px rgba(103, 132, 187, 0.02);
+    color: rgb(251, 251, 251);
+    position: absolute;
+    top: 15%;
 }
 
 .header {
@@ -91,19 +102,25 @@ img.image-load {
     grid-template-columns: auto 60px;
     font-weight: 600;
     color: rgb(100, 115, 128);
-    font-size: 1.6rem;
+    font-size: 16px;
+}
+
+.percentage {
+    vertical-align: text-top;
+    display: inline-flex;
+    padding-left: 3px;
 }
 
 .studios {
     color: hsl(14, 80%, 30%);
-    font-size: 1.3rem;
+    font-size: 13px;
     font-weight: 700;
     margin-top: 10px;
 }
 
 .info {
     color: rgb(116, 136, 153);
-    font-size: 1.3rem;
+    font-size: 13px;
     font-weight: 600;
     margin-top: 6px;
 }
@@ -122,10 +139,10 @@ img.image-load {
     border-radius: 10px;
     color: hsl(14, 80%, 30%);
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: 12px;
     font-weight: 700;
     height: 20px;
-    line-height: 2rem;
+    line-height: 20px;
     margin-right: 11px;
     padding: 0 12px;
     text-transform: lowercase;

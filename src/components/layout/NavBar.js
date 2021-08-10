@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router";
 
 import "./NavBar.css";
 import logo from "./imgs/logo.svg";
 
-const NavBar = () => {
+const NavBar = (props) => {
+    const [showNav, setShowNav] = useState(false);
+
+    const pageId = parseInt(props.location?.pathname.split("/")[2]);
+    let single;
+
+    useEffect(() => {
+        const renderStyle = () => {
+            if (Number.isInteger(pageId)) {
+                setShowNav(true);
+            } else {
+                setShowNav(false);
+            }
+        };
+        renderStyle();
+    }, [pageId]);
+
+    showNav ? (single = "single") : (single = "");
+
     return (
-        <div className="navbar">
+        <div className={`navbar ${single}`}>
             <div className="wrap-guest">
                 <a className="icon-logo" href="/">
                     <img
@@ -38,4 +57,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

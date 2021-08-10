@@ -1,4 +1,6 @@
 .navbar {
+    transition: background 0.8s ease 0s, top 0.5s ease 0s;
+    left: 0;
     height: 75px;
     background-color: #2b2d42;
     color: #bcbedc;
@@ -8,6 +10,24 @@
     width: 100%;
     z-index: 999;
     margin-bottom: 50px;
+}
+
+.navbar.single {
+    background: rgba(35, 38, 67, 0.5);
+    transition: background 0.8s ease 0s, top 0.5s ease 0s;
+    color: #e5e7ea;
+    height: 75px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 999;
+    position: fixed;
+}
+
+.navbar.single:hover {
+    background: #2b2d42;
+    color: #bcbedc;
 }
 
 .icon-logo {

@@ -160,24 +160,6 @@ const Search = () => {
         return <div key={i}>{resultAiring.attributes.canonicalTitle}</div>;
     });
 
-    // if (
-    //     renderedAiring ||
-    //     renderedAnime ||
-    //     renderedFormat ||
-    //     renderedYear ||
-    //     renderedGenre
-    // ) {
-    //     return (
-    //         { renderedAiring },
-    //         { renderedGenre },
-    //         { renderedAnime },
-    //         { renderedFormat },
-    //         { renderedYear }
-    //     );
-    // } else {
-    //     <Card />;
-    // }
-
     return (
         <div className="search">
             <div className="container">

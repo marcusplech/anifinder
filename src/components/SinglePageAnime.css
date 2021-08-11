@@ -32,6 +32,15 @@
     position: relative;
 }
 
+.sense-wrap {
+    height: 800px;
+    left: 10px;
+    max-width: 130px;
+    position: absolute;
+    top: 30px;
+    width: 100%;
+}
+
 .container-single {
     min-height: 250px;
     display: grid;
@@ -158,6 +167,7 @@
     font-size: 19px;
     font-family: "Roboto", sans-serif;
     text-transform: capitalize;
+    font-weight: 400;
 }
 
 .content.container {
@@ -177,6 +187,9 @@
     padding: 15px 0;
     transition: 0.2s;
     font-family: "Roboto", sans-serif;
+}
+.description-single:hover {
+    color: rgb(92, 114, 138);
 }
 
 .sidebar {
@@ -223,10 +236,31 @@
     }
 }
 
+@media (min-width: 1540px) {
+    .container-single {
+        max-width: 1520px;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
 @media (min-width: 1040px) and (max-width: 1540px) {
     .container-single {
         max-width: 1140px;
         padding-left: 50px;
         padding-right: 50px;
+    }
+}
+
+@media (min-width: 1540px) {
+    .sense-wrap {
+        left: 20px;
+    }
+}
+
+@media (min-width: 1540px) and (max-width: 1630px) {
+    .sense-wrap {
+        left: 10px;
+        max-width: 90px;
     }
 }

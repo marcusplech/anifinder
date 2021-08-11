@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import icon from "./layout/imgs/icons-search.svg";
 import "./Search.css";
 
-import { selectors } from "../selectors/returns";
+import { selectors } from "../state/selectors/returns";
 import { useSelector } from "react-redux";
 
 import HomeCards from "./HomeCards";
@@ -117,6 +117,7 @@ const Search = () => {
     }, [debouncedText, text, airing, format, genres, year, selectValue]);
 
     const getStateGenres = stateGenres?.map((result, i) => {
+        console.log(result.attributes);
         return (
             <div
                 key={i}
@@ -130,9 +131,10 @@ const Search = () => {
         );
     });
 
-    const arrYears = Array.from({ length: 40 }, (_, i) => 2024 - i);
+    const arrYears = Array.from({ length: 40 }, (_, i) => 2022 - i);
 
     const years = arrYears?.map((result, i) => {
+        console.log(result);
         return (
             <div key={i} className="option">
                 <label style={{ cursor: "pointer" }}>{result}</label>
@@ -190,6 +192,9 @@ const Search = () => {
                             <div className="select-wrap">
                                 <div className="select">
                                     <input
+                                        onChange={(e) =>
+                                            setGenres(e.target.value)
+                                        }
                                         onClick={() =>
                                             setOpenGenres(!openGenres)
                                         }
@@ -338,13 +343,10 @@ const Search = () => {
                                                 }
                                             >
                                                 <div className="option">
-                                                    <label>TV Show</label>
+                                                    <label>TV</label>
                                                 </div>
                                                 <div className="option">
                                                     <label>Movie</label>
-                                                </div>
-                                                <div className="option">
-                                                    <label>TV Short</label>
                                                 </div>
                                                 <div className="option">
                                                     <label>Special</label>

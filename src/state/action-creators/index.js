@@ -10,7 +10,7 @@ import {
 
 export const fetchShowTrending = async (dispatch) => {
     try {
-        fetch("https://kitsu.io/api/edge/trending/anime?limit=5?")
+        fetch("https://kitsu.io/api/edge/trending/anime?limit=6?")
             .then((data) => data.json())
             .then((data) =>
                 dispatch({ type: FETCH_TRENDING, payload: data.data })
@@ -22,7 +22,7 @@ export const fetchShowTrending = async (dispatch) => {
 export const fetchShowRated = async (dispatch) => {
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=5&sort=-averageRating"
+            "https://kitsu.io/api/edge/anime?page[limit]=6&page[offset]=5&sort=-averageRating"
         )
             .then((data) => data.json())
             .then((data) =>
@@ -32,10 +32,11 @@ export const fetchShowRated = async (dispatch) => {
         console.log(error);
     }
 };
+
 export const fetchShowComing = async (dispatch) => {
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=5&sort=-startDate"
+            "https://kitsu.io/api/edge/anime?page[limit]=6&page[offset]=5&sort=-startDate"
         )
             .then((data) => data.json())
             .then((data) =>
@@ -49,7 +50,7 @@ export const fetchShowComing = async (dispatch) => {
 export const fetchShowAiring = async (dispatch) => {
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=5&page[offset]=0&sort=-startDate&sort=-averageRating"
+            "https://kitsu.io/api/edge/anime?page[limit]=6&page[offset]=0&sort=-startDate&sort=-averageRating"
         )
             .then((data) => data.json())
             .then((data) =>
@@ -59,6 +60,7 @@ export const fetchShowAiring = async (dispatch) => {
         console.log(error);
     }
 };
+
 export const fetchShowGenres = async (dispatch) => {
     try {
         fetch(

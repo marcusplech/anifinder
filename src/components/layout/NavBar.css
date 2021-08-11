@@ -110,3 +110,31 @@
     color: rgb(255, 255, 255);
     transform: scale(1.03);
 }
+
+@media (max-height: 920px) {
+    .navbar {
+        height: 68px;
+    }
+}
+@media (max-width: 760px) {
+    .navbar {
+        visibility: hidden;
+        margin-bottom: 0px;
+        height: 0px;
+    }
+}
+@media (max-width: 760px) {
+    .wrap-guest {
+        display: block;
+        height: 0%;
+        width: 0%;
+        margin: 0px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .navbar {
+        width: 100%;
+        display: flex;
+    }
+}

@@ -109,6 +109,12 @@
     justify-content: center;
 }
 
+@media (min-width: 1540px) {
+    .landing {
+        height: auto;
+    }
+}
+
 @media (max-width: 1040px) {
     .landing {
         border-radius: 0;
@@ -126,5 +132,25 @@
 @media (max-width: 410px) {
     .landing {
         padding: 70px 30px;
+    }
+}
+
+@media (max-width: 760px) {
+    .feature-cards {
+        grid-template-columns: minmax(200px, 500px);
+        grid-gap: 50px;
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .join-btn {
+        margin-bottom: -90px;
+    }
+}
+
+@media (max-width: 760px) {
+    .join-btn {
+        margin-bottom: -50px;
     }
 }

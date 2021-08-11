@@ -8,7 +8,6 @@ const SinglePageAnime = (props) => {
     const [singleAnimeData, setSingleAnimeData] = useState(null);
     const [debouncedText, setDebouncedText] = useState(id);
 
-    //setSingleAnimeData(props.location.state.animeData) we can also use the current state if we need to!
     const renderContent = () => {
         if (singleAnimeData) {
             console.log(singleAnimeData);
@@ -20,23 +19,23 @@ const SinglePageAnime = (props) => {
                 singleAnimeData[0]?.attributes?.startDate?.split("-")[0];
             const averageRating = singleAnimeData[0]?.attributes?.averageRating;
             const synopsis = singleAnimeData[0]?.attributes?.synopsis;
-            // const youtubeId = singleAnimeData[0]?.attributes?.youtubeVideoId;
-
-            //anime extra details
-
             const ratingRank = singleAnimeData[0]?.attributes.ratingRank;
             const format = singleAnimeData[0]?.attributes?.subtype;
             const epiDuration = singleAnimeData[0]?.attributes?.episodeLength;
             const ageRating = singleAnimeData[0]?.attributes?.ageRatingGuide;
             console.log(singleAnimeData[0]?.attributes?.episodeCount);
-            // const numberOfEpisodes =
-            // singleAnimeData[0]?.attributes?.episodeCount;
             const engTitle = singleAnimeData[0]?.attributes?.titles.en;
-            // const jpTitle = singleAnimeData[0]?.attributes?.titles.en_jp;
-            // const niponTitle = singleAnimeData[0]?.attributes?.titles?.ja_jp;
             const status = singleAnimeData[0]?.attributes?.status;
             const popularityRank =
                 singleAnimeData[0]?.attributes.popularityRank;
+
+            // Algumas opções que não foram utilizadas:
+
+            // const numberOfEpisodes =
+            // singleAnimeData[0]?.attributes?.episodeCount;
+            // const jpTitle = singleAnimeData[0]?.attributes?.titles.en_jp;
+            // const niponTitle = singleAnimeData[0]?.attributes?.titles?.ja_jp;
+            // const youtubeId = singleAnimeData[0]?.attributes?.youtubeVideoId;
 
             return (
                 <div className="singlepage-content">
@@ -51,6 +50,7 @@ const SinglePageAnime = (props) => {
                                 <div className="shadow"></div>
                             </div>
                             <div className="header-single">
+                                <div className="sense-wrap"></div>
                                 <div className="container-single">
                                     <div className="cover-wrap">
                                         <div

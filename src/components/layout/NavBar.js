@@ -35,21 +35,11 @@ const NavBar = (props) => {
                 </a>
                 <div className="links">
                     <div className="browse-wrap">
-                        <a href="/" className="link">
-                            Browse
-                        </a>
-                        <a href="/" className="link">
-                            Social
-                        </a>
-                        <a href="/" className="link">
-                            Forum
-                        </a>
-                        <a href="/" className="link-login">
-                            Login
-                        </a>
-                        <a href="/signup" className="link-signup">
-                            Sign Up
-                        </a>
+                        <span className="link">Browse</span>
+                        <span className="link">Social</span>
+                        <span className="link">Forum</span>
+                        <span className="link-login">Login</span>
+                        <span className="link-signup">Sign Up</span>
                     </div>
                 </div>
             </div>

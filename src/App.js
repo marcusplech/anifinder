@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
+// Import Components
+import Signup from "./components/Signup";
 import {
     fetchShowTrending,
     fetchShowAiring,
@@ -10,7 +12,6 @@ import {
     fetchShowComing,
     fetchShowGenres,
 } from "./state/action-creators";
-// Import Components
 import NavBar from "./components/layout/NavBar";
 import Home from "./components/Home";
 import SinglePageAnime from "./components/SinglePageAnime";
@@ -31,6 +32,7 @@ const App = () => {
         <Router>
             <NavBar />
             <div
+                className="hahaha"
                 style={{
                     gridTemplateRows: "auto 1fr auto",
                     overflow: "hidden",
@@ -42,8 +44,9 @@ const App = () => {
                     exact
                     component={SinglePageAnime}
                 />
-                <Footer />
+                <Route path="/signup" exact component={Signup} />
             </div>
+            <Footer />
         </Router>
     );
 };

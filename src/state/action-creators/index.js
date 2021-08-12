@@ -4,6 +4,7 @@ import {
     FETCH_AIRING,
     FETCH_GENRES,
     FETCH_COMING,
+    FETCH_POPULARITY,
 } from "./types";
 
 // Buscas iniciais
@@ -69,6 +70,20 @@ export const fetchShowGenres = async (dispatch) => {
             .then((data) => data.json())
             .then((data) =>
                 dispatch({ type: FETCH_GENRES, payload: data.data })
+            );
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const fetchShowPopularity = async (dispatch) => {
+    try {
+        fetch(
+            "https://kitsu.io/api/edge/anime?page[limit]=10&page[offset]=0&sort=popularityRank"
+        )
+            .then((data) => data.json())
+            .then((data) =>
+                dispatch({ type: FETCH_POPULARITY, payload: data.data })
             );
     } catch (error) {
         console.log(error);

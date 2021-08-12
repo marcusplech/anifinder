@@ -3,3 +3,4 @@ export const FETCH_RATED = "FETCH_RATED";
 export const FETCH_AIRING = "FETCH_AIRING";
 export const FETCH_GENRES = "FETCH_GENRES";
 export const FETCH_COMING = "FETCH_COMING";
+export const FETCH_POPULARITY = "FETCH_POPULARITY";

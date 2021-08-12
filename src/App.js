@@ -11,6 +11,7 @@ import {
     fetchShowRated,
     fetchShowComing,
     fetchShowGenres,
+    fetchShowPopularity,
 } from "./state/action-creators";
 import NavBar from "./components/layout/NavBar";
 import Home from "./components/Home";
@@ -26,6 +27,7 @@ const App = () => {
         fetchShowRated(dispatch);
         fetchShowComing(dispatch);
         fetchShowGenres(dispatch);
+        fetchShowPopularity(dispatch);
     }, []);
 
     return (

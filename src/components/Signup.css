@@ -1,0 +1,146 @@
+.form-content {
+    min-height: 100vh;
+}
+
+.form-container {
+    max-width: 400px;
+    width: 100%;
+    background: rgb(250, 250, 250);
+    border-radius: 4px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+    margin: 0 auto;
+    min-width: 320px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    color: rgb(92, 114, 138);
+}
+
+.al-input {
+    background: rgba(237, 241, 245, 0.7);
+    border-radius: 4px;
+    border: 0;
+    box-shadow: none;
+    color: rgb(92, 114, 138);
+    font-size: 14px;
+    font-weight: 400;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+    width: 100%;
+    font-family: sans-serif;
+}
+
+.al-input::placeholder {
+    color: #5c728a;
+}
+
+.submit {
+    background: rgb(61, 180, 242);
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 10px 30px;
+}
+
+.el-checkbox {
+    color: #606266;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 30px;
+}
+
+.span-checkbox {
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    line-height: 1;
+    position: relative;
+    vertical-align: middle;
+}
+
+.el-checkbox-inner {
+    background: rgb(237, 241, 245);
+    border-color: rgba(92, 114, 138, 0.2);
+    display: inline-block;
+    position: relative;
+    border: 1px solid #dcdfe6;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    z-index: 1;
+    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+        background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+}
+
+.el-checkbox-inner::after {
+    box-sizing: content-box;
+    content: "";
+    border: 1px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    height: 7px;
+    left: 4px;
+    position: absolute;
+    top: 1px;
+    transform: rotate(45deg) scaleY(0);
+    width: 3px;
+    transition: transform 0.15s ease-in 0.05s;
+    transform-origin: center;
+}
+
+.el-checkbox-original {
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    margin: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+}
+
+.el-checkbox-label {
+    color: rgb(122, 133, 143);
+    font-weight: 400;
+    margin-bottom: 25px;
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 19px;
+    font-size: 13px;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 760px) {
+    .form-container {
+        max-width: 100%;
+        min-height: 100vh;
+        margin: 0;
+    }
+}

@@ -167,16 +167,12 @@ const Search = () => {
         );
     });
 
-    const airingStatus = [
-        "Finished",
-        "Current",
-        // "Not Yet Released",
-        // "Cancelled",
-    ];
+    const airingStatus = ["Finished", "Current", "Unreleased", "TBA"];
 
     const dropAiring = airingStatus.map((result, i) => {
         return (
             <div
+                key={i}
                 className="option"
                 type="submit"
                 value={result}
@@ -267,6 +263,7 @@ const Search = () => {
                                     </svg>
                                 </div>
                                 <Dropdown
+                                    key={openGenres}
                                     open={openGenres}
                                     setOpen={setOpenGenres}
                                     title="Genres"
@@ -310,6 +307,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
+                                        key={openYear}
                                         open={openYear}
                                         setOpen={setOpenYear}
                                         title="Years"
@@ -356,6 +354,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
+                                        key={openFormat}
                                         open={openFormat}
                                         setOpen={setOpenFormat}
                                         canal={dropFormats}
@@ -401,6 +400,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
+                                        key={openAiring}
                                         open={openAiring}
                                         setOpen={setOpenAiring}
                                         canal={dropAiring}

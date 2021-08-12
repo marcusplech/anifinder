@@ -12,6 +12,9 @@ const HomeCards = () => {
     const stateRated = useSelector(selectors.getRated);
     const stateComing = useSelector(selectors.getComing);
 
+    // Para utilizar depois
+    // const statePopularity = useSelector(selectors.getPopularity);
+
     return (
         <div className="search-landing">
             <div className="landing-section">

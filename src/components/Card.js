@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = (props) => {
+    const image = props.data.posterImage.small;
+
     const epiCount = () => {
-        if (props.data.episodeCount != null) {
+        if (props.data.episodeCount > 1) {
             return `${props.data.episodeCount} Episodes`;
+        } else if (props.data.episodeCount === 1) {
+            return `${props.data.episodeCount} Episode`;
         } else {
-            return "Episodes";
+            return "Episode";
         }
     };
-    const image = props.data.posterImage.small;
     return (
         <Link
             className="media-card"

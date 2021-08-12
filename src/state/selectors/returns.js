@@ -4,6 +4,7 @@ const selectors = {
     getRated: (state) => state.fetch.rated,
     getAiring: (state) => state.fetch.airing,
     getComing: (state) => state.fetch.coming,
+    getPopularity: (state) => state.fetch.popularity,
 };
 
 export { selectors };

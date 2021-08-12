@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 import "./NavBar.css";
 import logo from "./imgs/logo.svg";
@@ -39,7 +40,9 @@ const NavBar = (props) => {
                         <span className="link">Social</span>
                         <span className="link">Forum</span>
                         <span className="link-login">Login</span>
-                        <span className="link-signup">Sign Up</span>
+                        <Link to="/signup" className="link-signup">
+                            Sign Up
+                        </Link>
                     </div>
                 </div>
             </div>

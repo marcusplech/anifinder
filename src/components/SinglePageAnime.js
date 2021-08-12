@@ -10,7 +10,6 @@ const SinglePageAnime = (props) => {
 
     const renderContent = () => {
         if (singleAnimeData) {
-            console.log(singleAnimeData);
             const coverImage =
                 singleAnimeData[0]?.attributes?.coverImage?.original;
             const posterImage =
@@ -23,7 +22,6 @@ const SinglePageAnime = (props) => {
             const format = singleAnimeData[0]?.attributes?.subtype;
             const epiDuration = singleAnimeData[0]?.attributes?.episodeLength;
             const ageRating = singleAnimeData[0]?.attributes?.ageRatingGuide;
-            console.log(singleAnimeData[0]?.attributes?.episodeCount);
             const engTitle = singleAnimeData[0]?.attributes?.titles.en;
             const status = singleAnimeData[0]?.attributes?.status;
             const popularityRank =

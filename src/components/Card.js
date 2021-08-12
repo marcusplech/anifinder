@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = (props) => {
-    const image = props.data.posterImage.small;
+    const image = props.data.posterImage?.small;
 
     const epiCount = () => {
         if (props.data.episodeCount > 1) {

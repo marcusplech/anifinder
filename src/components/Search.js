@@ -184,23 +184,43 @@ const Search = () => {
     });
 
     const renderedAnime = results?.map((result) => {
-        return <div key={result.id}>{result.attributes.canonicalTitle}</div>;
+        return (
+            <div>
+                <Card data={result.attributes} />
+            </div>
+        );
     });
 
-    const renderedGenre = genreResults?.map((resultGenre, i) => {
-        return <div key={i}>{resultGenre.attributes.canonicalTitle}</div>;
+    const renderedGenre = genreResults?.map((resultGenre) => {
+        return (
+            <div>
+                <Card data={resultGenre.attributes} />
+            </div>
+        );
     });
 
-    const renderedFormat = formatResults?.map((resultFormat, i) => {
-        return <div key={i}>{resultFormat.attributes.canonicalTitle}</div>;
+    const renderedFormat = formatResults?.map((resultFormat) => {
+        return (
+            <div>
+                <Card data={resultFormat.attributes} />
+            </div>
+        );
     });
 
-    const renderedYear = yearResults?.map((resultYear, i) => {
-        return <div key={i}>{resultYear.attributes.canonicalTitle}</div>;
+    const renderedYear = yearResults?.map((resultYear) => {
+        return (
+            <div>
+                <Card data={resultYear.attributes} />
+            </div>
+        );
     });
 
-    const renderedAiring = airingResults?.map((resultAiring, i) => {
-        return <div key={i}>{resultAiring.attributes.canonicalTitle}</div>;
+    const renderedAiring = airingResults?.map((resultAiring) => {
+        return (
+            <div>
+                <Card data={resultAiring.attributes} />
+            </div>
+        );
     });
 
     return (
@@ -410,12 +430,14 @@ const Search = () => {
                         </div>
                     </div>
                 </div>
-                <div>{renderedAnime}</div>
-                <div>{renderedGenre}</div>
-                <div>{renderedFormat}</div>
-                <div>{renderedAiring}</div>
-                <div>{renderedYear}</div>
-                <HomeCards key={Card} />
+                <div className="landing-section">
+                    <div className="results">{renderedAnime}</div>
+                    <div className="results">{renderedGenre}</div>
+                    <div className="results">{renderedFormat}</div>
+                    <div className="results">{renderedAiring}</div>
+                    <div className="results">{renderedYear}</div>
+                </div>
+                <HomeCards />
             </div>
         </div>
     );

@@ -9,19 +9,14 @@ const Footer = () => {
             <div className="footer-container">
                 <div className="theme-selector">
                     <h2 className="h2-footer">Site Theme</h2>
-                    <div
-                        onClick={() => console.log(setTheme(!theme))}
-                        className="light-theme"
-                    >
-                        A
-                    </div>
+                    <div className="light-theme">A</div>
                     <div className="dark-theme">A</div>
                 </div>
                 <div className="footer-links">
                     <div className="footer-section">
                         <span className="footer-a">Donate</span>
-                        <span className="footer-a">AniList.co</span>
-                        <span className="footer-a">AniChart.net</span>
+                        <span className="footer-a">AniFinder.co</span>
+                        <span className="footer-a">Anifinder.netlify.app</span>
                     </div>
                     <div className="footer-section">
                         <span className="footer-a">App</span>

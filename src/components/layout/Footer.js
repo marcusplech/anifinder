@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
-    const [theme, setTheme] = useState(false);
-
     return (
         <footer className="footer">
             <div className="footer-container">

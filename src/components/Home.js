@@ -1,7 +1,7 @@
 import React from "react";
 import Landing from "./layout/Landing";
 import Search from "./Search";
-import HomeList from "./HomeList";
+// import HomeList from "./HomeList";
 
 const Home = () => {
     return (
@@ -9,7 +9,8 @@ const Home = () => {
             <div className="main content" style={{ overflow: "hidden" }}>
                 <Landing />
                 <Search />
-                <HomeList />
+                {/* Colocar quando tiver tempo */}
+                {/* <HomeList /> */}
             </div>
         </>
     );

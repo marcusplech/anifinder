@@ -19,17 +19,15 @@ const Search = () => {
     const [text, setText] = useState("");
 
     const [results, setResults] = useState([]);
-    const [genreResults, setGenreResults] = useState([]);
-    const [airingResults, setAiringResults] = useState([]);
-    const [formatResults, setFormatResults] = useState([]);
-    const [yearResults, setYearResults] = useState([]);
-    const [debouncedText, setDebouncedText] = useState(text);
 
     //DROPDOWN
     const [openGenres, setOpenGenres] = useState(false);
     const [openFormat, setOpenFormat] = useState(false);
     const [openAiring, setOpenAiring] = useState(false);
     const [openYear, setOpenYear] = useState(false);
+    const arrYears = Array.from({ length: 40 }, (_, i) => 2022 - i);
+    const formats = ["TV", "Movie", "Special", "OVA", "ONA", "Music"];
+    const airingStatus = ["Finished", "Current", "Unreleased", "TBA"];
 
     const ref = useRef();
 
@@ -50,175 +48,77 @@ const Search = () => {
     }, [ref]);
 
     useEffect(() => {
+        const getAnimes = (search, genres, year, airing, format) => {
+            let url = "https://kitsu.io/api/edge/anime?";
+
+            if (search) {
+                url += `&filter[text]=${search}`;
+            }
+            if (genres.length > 0) {
+                url += `&filter[categories]=${genres}`;
+            }
+            if (year.length > 0) {
+                url += `&filter[year]=${year}`;
+            }
+            if (airing.length > 0) {
+                url += `&filter[status]=${airing}`;
+            }
+            if (format.length > 0) {
+                url += `&filter[subtype]=${format}`;
+            }
+
+            if (url !== "https://kitsu.io/api/edge/anime?") {
+                fetch(url)
+                    .then((res) => res.json())
+                    .then((newData) => {
+                        setResults(newData.data);
+                    });
+            } else {
+                setResults([]);
+            }
+        };
+
         const timerId = setTimeout(() => {
-            setDebouncedText(text);
+            getAnimes(
+                text,
+                selectValueGenres,
+                selectValueYears,
+                selectValueAiring,
+                selectValueFormat
+            );
         }, 500);
 
         return () => {
             clearTimeout(timerId);
         };
-    }, [text]);
-
-    useEffect(() => {
-        const search = () => {
-            fetch(`https://kitsu.io/api/edge/anime?filter[text]=${text}`)
-                .then((res) => res.json())
-                .then((newData) => {
-                    setResults(newData.data);
-                });
-        };
-
-        const getGenres = () => {
-            fetch(
-                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[genres]=${selectValueGenres}&sort=popularityRank`
-            )
-                .then((res) => res.json())
-                .then((newData) => {
-                    setGenreResults(newData.data);
-                });
-        };
-
-        const getAiring = () => {
-            fetch(
-                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[status]=${selectValueAiring}&sort=popularityRank`
-            )
-                .then((res) => res.json())
-                .then((newData) => {
-                    setAiringResults(newData.data);
-                });
-        };
-
-        const getFormat = () => {
-            fetch(
-                `https://kitsu.io/api/edge/anime?page[offset]=0&filter[subtype]=${selectValueFormat}&sort=popularityRank`
-            )
-                .then((res) => res.json())
-                .then((newData) => {
-                    setFormatResults(newData.data);
-                });
-        };
-
-        const getYear = () => {
-            fetch(
-                `https://kitsu.io/api/edge/anime?filter[year]=${selectValueYears}`
-            )
-                .then((res) => res.json())
-                .then((newData) => {
-                    setYearResults(newData.data);
-                });
-        };
-
-        getYear();
-        getFormat();
-        getAiring();
-        getGenres();
-        search();
     }, [
-        debouncedText,
+        text,
         selectValueGenres,
         selectValueYears,
         selectValueFormat,
         selectValueAiring,
     ]);
 
-    const getStateGenres = stateGenres?.map((result, i) => {
-        return (
-            <div
-                key={i}
-                onClick={(e) => setSelectValueGenres(e.target.innerText)}
-                value={result}
-                type="submit"
-                className="option"
-            >
-                {result.attributes.name}
-            </div>
-        );
-    });
-
-    const arrYears = Array.from({ length: 40 }, (_, i) => 2022 - i);
-
-    const years = arrYears?.map((result, i) => {
-        return (
-            <div
-                type="submit"
-                value={result}
-                onClick={(e) => setSelectValueYears(e.target.innerText)}
-                key={i}
-                className="option"
-            >
-                {result}
-            </div>
-        );
-    });
-
-    const formats = ["TV", "Movie", "Special", "OVA", "ONA", "Music"];
-
-    const dropFormats = formats.map((result, i) => {
-        return (
-            <div
-                className="option"
-                key={i}
-                type="submit"
-                value={result}
-                onClick={(e) => setSelectValueFormat(e.target.innerText)}
-            >
-                {result}
-            </div>
-        );
-    });
-
-    const airingStatus = ["Finished", "Current", "Unreleased", "TBA"];
-
-    const dropAiring = airingStatus.map((result, i) => {
-        return (
-            <div
-                key={i}
-                className="option"
-                type="submit"
-                value={result}
-                onClick={(e) => setSelectValueAiring(e.target.innerText)}
-            >
-                {result}
-            </div>
-        );
-    });
+    const getStateMap = (values, setFunc, attributes = false) => {
+        return values.map((result, i) => {
+            return (
+                <div
+                    key={i}
+                    onClick={(e) => setFunc(e.target.innerText)}
+                    value={result}
+                    type="submit"
+                    className="option"
+                >
+                    {attributes ? result.attributes.name : result}
+                </div>
+            );
+        });
+    };
 
     const renderedAnime = results?.map((result) => {
         return (
             <div>
                 <Card data={result.attributes} />
-            </div>
-        );
-    });
-
-    const renderedGenre = genreResults?.map((resultGenre) => {
-        return (
-            <div>
-                <Card data={resultGenre.attributes} />
-            </div>
-        );
-    });
-
-    const renderedFormat = formatResults?.map((resultFormat) => {
-        return (
-            <div>
-                <Card data={resultFormat.attributes} />
-            </div>
-        );
-    });
-
-    const renderedYear = yearResults?.map((resultYear) => {
-        return (
-            <div>
-                <Card data={resultYear.attributes} />
-            </div>
-        );
-    });
-
-    const renderedAiring = airingResults?.map((resultAiring) => {
-        return (
-            <div>
-                <Card data={resultAiring.attributes} />
             </div>
         );
     });
@@ -287,7 +187,11 @@ const Search = () => {
                                     open={openGenres}
                                     setOpen={setOpenGenres}
                                     title="Genres"
-                                    canal={getStateGenres}
+                                    canal={getStateMap(
+                                        stateGenres,
+                                        setSelectValueGenres,
+                                        true
+                                    )}
                                 />
                             </div>
                         </div>
@@ -331,7 +235,10 @@ const Search = () => {
                                         open={openYear}
                                         setOpen={setOpenYear}
                                         title="Years"
-                                        canal={years}
+                                        canal={getStateMap(
+                                            arrYears,
+                                            setSelectValueYears
+                                        )}
                                     />
                                 </div>
                             </div>
@@ -377,7 +284,10 @@ const Search = () => {
                                         key={openFormat}
                                         open={openFormat}
                                         setOpen={setOpenFormat}
-                                        canal={dropFormats}
+                                        canal={getStateMap(
+                                            formats,
+                                            setSelectValueFormat
+                                        )}
                                     />
                                 </div>
                             </div>
@@ -423,7 +333,10 @@ const Search = () => {
                                         key={openAiring}
                                         open={openAiring}
                                         setOpen={setOpenAiring}
-                                        canal={dropAiring}
+                                        canal={getStateMap(
+                                            airingStatus,
+                                            setSelectValueAiring
+                                        )}
                                     />
                                 </div>
                             </div>
@@ -432,10 +345,6 @@ const Search = () => {
                 </div>
                 <div className="landing-section">
                     <div className="results">{renderedAnime}</div>
-                    <div className="results">{renderedGenre}</div>
-                    <div className="results">{renderedFormat}</div>
-                    <div className="results">{renderedAiring}</div>
-                    <div className="results">{renderedYear}</div>
                 </div>
                 <HomeCards />
             </div>

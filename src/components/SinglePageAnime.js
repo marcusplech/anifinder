@@ -163,6 +163,13 @@ const SinglePageAnime = (props) => {
                                     </div>
                                 </div>
                             </div>
+                            {/* <div className="overview">
+                                <div className="grid-section-wrap">
+                                    <div className="trailer">
+                                        <h2>Trailer</h2>
+                                    </div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

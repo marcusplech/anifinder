@@ -36,8 +36,8 @@
 .search-wrap {
     background: rgb(251, 251, 251);
     border-radius: 6px;
-    box-shadow: 0 14px 30px rgba(var(--color-shadow), 0.1),
-        0 4px 4px rgba(var(--color-shadow), 0.04);
+    box-shadow: 0 14px 30px rgb(103 132 187 / 10%),
+        0 4px 4px rgb(103 132 187 / 4%);
     display: grid;
     font-size: 1.3rem;
     font-weight: 600;

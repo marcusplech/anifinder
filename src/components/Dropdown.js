@@ -3,7 +3,7 @@ import "./Dropdown.css";
 
 const Dropdown = (props) => {
     return (
-        <div className={`open menu${props.open ? "active" : ""}`}>
+        <div className={`open menu ${props.open ? "active" : ""}`}>
             <div className="ps-container">
                 <div
                     className="option-group"

@@ -174,7 +174,7 @@
     }
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1540px) {
     .filters {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }

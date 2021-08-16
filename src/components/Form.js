@@ -58,12 +58,16 @@ const Form = () => {
                                 >
                                     Sign Up
                                 </div>
+                                {isModalVisible ? (
+                                    <Modal
+                                        onClose={() => setIsModalVisible(false)}
+                                    />
+                                ) : null}
                             </div>
                         );
                     })}
                 </form>
             </div>
-            {isModalVisible ? <Modal /> : null}
         </div>
     );
 };

@@ -23,7 +23,7 @@ export const fetchShowTrending = async (dispatch) => {
 export const fetchShowRated = async (dispatch) => {
     try {
         fetch(
-            "https://kitsu.io/api/edge/anime?page[limit]=6&page[offset]=5&sort=-averageRating"
+            "https://kitsu.io/api/edge/anime?page[limit]=6&page[offset]=6&sort=-averageRating"
         )
             .then((data) => data.json())
             .then((data) =>

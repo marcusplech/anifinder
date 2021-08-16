@@ -2,13 +2,15 @@ import React from "react";
 import Signup from "./Signup";
 import "./Modal.css";
 
-const Modal = () => {
+const Modal = ({ id = "modal", onClose = () => {} }) => {
+    const handleClickOutside = (e) => {
+        if (e.target.id === id) onClose();
+    };
+
     return (
-        <div className="modal">
+        <div id={id} className="modal" onClick={handleClickOutside}>
             <div className="modal-container">
-                <div className="content-modal">
-                    <Signup />
-                </div>
+                <Signup />
             </div>
         </div>
     );

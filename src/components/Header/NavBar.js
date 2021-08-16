@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import "./NavBar.css";
-import logo from "./imgs/logo.svg";
+import logo from "../layout/imgs/logo.svg";
 
 const NavBar = (props) => {
     const [showNav, setShowNav] = useState(false);
@@ -25,15 +25,15 @@ const NavBar = (props) => {
     showNav ? (single = "single") : (single = "");
 
     return (
-        <div className={`navbar ${single}`}>
+        <header className={`navbar ${single}`}>
             <div className="wrap-guest">
-                <a className="icon-logo" href="/">
+                <Link to="/" data-testid="icon-logo" className="icon-logo">
                     <img
                         src={logo}
-                        alt="icon-logo"
+                        alt="icon logo"
                         style={{ height: "50px" }}
                     ></img>
-                </a>
+                </Link>
                 <div className="links">
                     <div className="browse-wrap">
                         <span className="link">Browse</span>
@@ -46,7 +46,7 @@ const NavBar = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     );
 };
 

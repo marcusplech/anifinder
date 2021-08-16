@@ -6,7 +6,7 @@ import Search from "./Search";
 const Home = () => {
     return (
         <>
-            <div className="main content" style={{ overflow: "hidden" }}>
+            <div className="main content">
                 <Landing />
                 <Search />
                 {/* Colocar quando tiver tempo */}

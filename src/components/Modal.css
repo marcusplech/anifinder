@@ -1,0 +1,146 @@
+.modal {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    background-color: #fff;
+    color: #000;
+    width: 60%;
+    height: 60%;
+}
+.modal-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.15s linear;
+}
+
+.modal-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.91);
+    transition: all 0.15s linear;
+}
+
+.modal-box {
+    position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 40%;
+    width: 27%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 4px;
+    transition: all 0.3s ease-out;
+}
+
+.modal-wrapper.opened,
+.modal-backdrop.opened,
+.modal-box.opened {
+    visibility: visible;
+    opacity: 1;
+}
+.modal-box.opened {
+    top: 42%;
+    left: 50%;
+}
+
+/* Sign up Modal*/
+.signup-img img {
+    height: 240px;
+    width: 100%;
+}
+
+.signup-content {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-title {
+    margin-bottom: 1.3rem;
+}
+.facebook {
+    font-weight: 400;
+    font-family: "Open Sans", sans-serif;
+    width: 92%;
+    height: 58px;
+    border-radius: 2px;
+    font-size: 16px;
+    text-align: left;
+    color: #fff;
+    background-color: #3b5998;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 30px;
+}
+
+.facebook-connect {
+    margin-left: 10px;
+}
+
+.signup-connecting {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.signup-connect {
+    color: #f3290a;
+    cursor: pointer;
+}
+
+.signup-standout {
+    color: #f3290a;
+}
+
+.signup-standout.login {
+    cursor: pointer;
+}
+
+.signup-message {
+    font-size: 13px;
+    color: #797979;
+    font-family: "Open Sans", sans-serif;
+    margin: 15px 0;
+}
+.signup-message.append {
+    color: #504f4f;
+}
+
+.signup-standout.e-mail,
+.signup-standout.project {
+    font-weight: 700;
+}
+
+.signup-content h4 {
+    margin: 0;
+}

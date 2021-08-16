@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // Import Components
-import Signup from "./components/Signup";
+import Form from "./components/Form";
 import {
     fetchShowTrending,
     fetchShowAiring,
@@ -13,10 +13,10 @@ import {
     fetchShowGenres,
     fetchShowPopularity,
 } from "./state/action-creators";
-import NavBar from "./components/layout/NavBar";
+import NavBar from "./components/Header/NavBar";
 import Home from "./components/Home";
 import SinglePageAnime from "./components/SinglePageAnime";
-import Footer from "./components/layout/Footer";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -33,20 +33,16 @@ const App = () => {
     return (
         <Router>
             <NavBar />
-            <div
-                className="hahaha"
-                style={{
-                    gridTemplateRows: "auto 1fr auto",
-                    overflow: "hidden",
-                }}
-            >
-                <Route path="/" exact component={Home} />
-                <Route
-                    path="/:slug/:totalLength"
-                    exact
-                    component={SinglePageAnime}
-                />
-                <Route path="/signup" exact component={Signup} />
+            <div className="main-container">
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route
+                        path="/:slug/:totalLength"
+                        exact
+                        component={SinglePageAnime}
+                    />
+                    <Route path="/signup" exact component={Form} />
+                </Switch>
             </div>
             <Footer />
         </Router>

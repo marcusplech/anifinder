@@ -15,6 +15,7 @@ const Card = (props) => {
             return "Episode";
         }
     };
+
     return (
         <Link
             className="media-card"

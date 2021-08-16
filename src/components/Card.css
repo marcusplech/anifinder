@@ -11,8 +11,12 @@
 .media-card:hover .hover-data.right {
     animation: 0.22s;
     opacity: 1;
-    color: hsl(42, 37%, 22%);
+    /* color: hsl(42, 37%, 22%); */
     visibility: visible;
+}
+
+.media-card:hover .title-card {
+    color: hsl(42, 37%, 22%);
 }
 
 .cover {

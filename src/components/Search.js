@@ -86,7 +86,7 @@ const Search = () => {
                 selectValueAiring,
                 selectValueFormat
             );
-        }, 500);
+        }, 300);
 
         return () => {
             clearTimeout(timerId);

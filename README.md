@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+## About this app
+This is a personal side project of mine (made with React and Redux), which is based on a anime community app (namely, AniList) I'm very fond of. It is designed to showcase the most recent and core React skills (as of 2020).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live demo at https://anifinder.netlify.app/
 
-## Available Scripts
+Home Page            |  Home Page
+:-------------------------:|:-------------------------:
+![](https://i.ibb.co/xCj66zS/Homepage1.jpg)  |  ![](https://i.ibb.co/6Zk3S2n/Homepage2.jpg)
 
-In the project directory, you can run:
+Search Anime        |  Anime Single Page
+:-------------------------:|:-------------------------:
+![](https://i.ibb.co/D75GsYL/search-Animes.jpg)  |  ![](https://i.ibb.co/gdhk0pJ/single-Anime.jpg)
 
+## How to run it
+
+Simply type consecutively:
+
+### `npm i`
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technical comments
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project has lots of modern and advanced features, such as the hook system, a great deal of content managed with Redux, Higher Order Components to make it easy to reuse logic throughout the app and much more. It also contains quite a good deal of complex design system, handled mostly by the new grid and flex system, even complex structures such as the the hovering effect is handled by these two powerful tools.
 
-### `npm test`
+## Issues
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now, I must say if there's one thing that I think I could have done better is the overall design pattern. Needless to say, I've done it from the absolute ground up, so there was always the possibility of committing some crimes in this regard. Also, I should point that the requests are not 100% optimal, it could've been way better perfomance wise (for example, I did a bit more requests when you load the Home Page than you'd actually need and already stored it in the Redux for later use, but this is not a very scalable code practice).

@@ -72,10 +72,11 @@
 }
 
 .label-checkbox {
+    display: flex;
     color: rgb(122, 133, 143);
     font-size: 13px;
     font-weight: 400;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 

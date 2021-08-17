@@ -37,7 +37,7 @@ const Card = (props) => {
                     </div>
                     <div className="score">
                         <svg
-                            color="green"
+                            color="rgb(123,213,85)"
                             aria-hidden="true"
                             focusable="false"
                             data-prefix="far"

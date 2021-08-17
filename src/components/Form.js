@@ -35,22 +35,14 @@ const Form = () => {
                                     className="al-input"
                                     placeholder="Confirm Password"
                                 />
-                                <label className="el-checkbox">
-                                    <span
-                                        aria-checked="mixed"
-                                        className="span-checkbox"
-                                    >
-                                        <span className="el-checkbox-inner"></span>
-                                        <input
-                                            className="el-checkbox-original"
-                                            type="checkbox"
-                                            aria-hidden="true"
-                                        ></input>
-                                    </span>
-                                    <span className="el-checkbox-label">
-                                        You agree to our terms of service
-                                    </span>
-                                </label>
+                                <div className="checkbox-container">
+                                    <label className="label-checkbox">
+                                        <input type="checkbox"></input>
+                                        <span>
+                                            You agree to our terms of service
+                                        </span>
+                                    </label>
+                                </div>
                                 <div
                                     onClick={() => setIsModalVisible(true)}
                                     type="submit"

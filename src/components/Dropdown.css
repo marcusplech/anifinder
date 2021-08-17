@@ -22,8 +22,18 @@
 }
 
 .open.menu.active {
+    animation: fadein 0.5s;
     transform: scale(1);
     transition: all 0.3s ease-in-out;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .group-title {

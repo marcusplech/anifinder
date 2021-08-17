@@ -281,6 +281,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
+                                        title="Format"
                                         key={openFormat}
                                         open={openFormat}
                                         setOpen={setOpenFormat}
@@ -330,6 +331,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
+                                        title="Airing"
                                         key={openAiring}
                                         open={openAiring}
                                         setOpen={setOpenAiring}

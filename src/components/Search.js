@@ -31,6 +31,41 @@ const Search = () => {
 
     const ref = useRef();
 
+    const openDropDown = (type) => {
+        switch (type) {
+            case "Genres":
+                setOpenFormat(false);
+                setOpenAiring(false);
+                setOpenYear(false);
+                setOpenGenres(true);
+                break;
+            case "Airing":
+                setOpenFormat(false);
+                setOpenAiring(true);
+                setOpenYear(false);
+                setOpenGenres(false);
+                break;
+            case "Year":
+                setOpenFormat(false);
+                setOpenAiring(false);
+                setOpenYear(true);
+                setOpenGenres(false);
+                break;
+            case "Format":
+                setOpenFormat(true);
+                setOpenAiring(false);
+                setOpenYear(false);
+                setOpenGenres(false);
+                break;
+            default:
+                setOpenFormat(false);
+                setOpenAiring(false);
+                setOpenYear(false);
+                setOpenGenres(false);
+                break;
+        }
+    };
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (ref.current && !ref.current.contains(event.target)) {
@@ -140,6 +175,7 @@ const Search = () => {
                                     }}
                                 ></img>
                                 <input
+                                    onClick={() => openDropDown("Search")}
                                     value={text}
                                     onChange={(e) => setText(e.target.value)}
                                     type="search"
@@ -156,9 +192,7 @@ const Search = () => {
                                         onChange={(e) =>
                                             setSelectValueGenres(e.target.value)
                                         }
-                                        onClick={() =>
-                                            setOpenGenres(!openGenres)
-                                        }
+                                        onClick={() => openDropDown("Genres")}
                                         value={selectValueGenres}
                                         placeholder="Any"
                                         type="search"
@@ -166,9 +200,7 @@ const Search = () => {
                                         className="filter"
                                     ></input>
                                     <svg
-                                        onClick={() =>
-                                            setOpenGenres(!openGenres)
-                                        }
+                                        onClick={() => openDropDown("Genres")}
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -201,9 +233,7 @@ const Search = () => {
                                 <div id="select" className="select">
                                     <div className="value-wrap">
                                         <input
-                                            onClick={() =>
-                                                setOpenYear(!openYear)
-                                            }
+                                            onClick={() => openDropDown("Year")}
                                             onChange={(e) =>
                                                 setSelectValueYears(
                                                     e.target.value
@@ -217,7 +247,7 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
-                                        onClick={() => setOpenYear(!openYear)}
+                                        onClick={() => openDropDown("Year")}
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -255,7 +285,7 @@ const Search = () => {
                                                 )
                                             }
                                             onClick={() =>
-                                                setOpenFormat(!openFormat)
+                                                openDropDown("Format")
                                             }
                                             value={selectValueFormat}
                                             placeholder="Any"
@@ -265,9 +295,7 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
-                                        onClick={() =>
-                                            setOpenFormat(!openFormat)
-                                        }
+                                        onClick={() => openDropDown("Format")}
                                         className="chevrondown"
                                         width="24"
                                         height="24"
@@ -305,7 +333,7 @@ const Search = () => {
                                                 )
                                             }
                                             onClick={() =>
-                                                setOpenAiring(!openAiring)
+                                                openDropDown("Airing")
                                             }
                                             value={selectValueAiring}
                                             placeholder="Any"
@@ -315,9 +343,7 @@ const Search = () => {
                                         ></input>
                                     </div>
                                     <svg
-                                        onClick={() =>
-                                            setOpenAiring(!openAiring)
-                                        }
+                                        onClick={() => openDropDown("Airing")}
                                         className="chevrondown"
                                         width="24"
                                         height="24"

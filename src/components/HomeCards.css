@@ -44,15 +44,9 @@
 
 @media (max-width: 1065px) {
     .results {
-        grid-gap: 25px 14px;
-    }
-}
-
-@media (max-with: 1040px) {
-    .results {
         padding: 0 20px;
         grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
-        grid-gap: 25px 20px;
+        grid-gap: 25px 14px;
         justify-content: center;
     }
 }

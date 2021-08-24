@@ -5,14 +5,12 @@ import Search from "./Search";
 
 const Home = () => {
     return (
-        <>
-            <div className="main content">
-                <Landing />
-                <Search />
-                {/* Colocar quando tiver tempo */}
-                {/* <HomeList /> */}
-            </div>
-        </>
+        <div className="main content">
+            <Landing />
+            <Search />
+            {/* Colocar quando tiver tempo */}
+            {/* <HomeList /> */}
+        </div>
     );
 };
 

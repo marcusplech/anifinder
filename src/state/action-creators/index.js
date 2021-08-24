@@ -20,6 +20,7 @@ export const fetchShowTrending = async (dispatch) => {
         console.log(error);
     }
 };
+
 export const fetchShowRated = async (dispatch) => {
     try {
         fetch(

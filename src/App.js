@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // Import Components
-import Form from "./components/Form";
+import Form from "./components/Signup/Form";
 import NavBar from "./components/Header/NavBar";
-import Home from "./components/Home";
-import SinglePageAnime from "./components/SinglePageAnime";
+import Home from "./components/Home/Home";
+import SinglePageAnime from "./components/SinglePage/SinglePageAnime";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {

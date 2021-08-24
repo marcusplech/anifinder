@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./SinglePageAnime.css";
 
-import Spinner from "./layout/Spinner";
+import Spinner from "../layout/Spinner";
 
 const SinglePageAnime = (props) => {
     const id = props.location.pathname.split("/")[1];

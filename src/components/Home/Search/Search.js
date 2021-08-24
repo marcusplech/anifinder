@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import icon from "./layout/imgs/icons-search.svg";
+import icon from "../../layout/imgs/icons-search.svg";
 import "./Search.css";
 
-import { selectors } from "../state/selectors/returns";
+import { selectors } from "../../../state/selectors/returns";
 import { useSelector } from "react-redux";
 
-import Card from "./Card";
-import Dropdown from "./Dropdown";
+import Card from "../Cards/Card";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Search = () => {
     const [selectValueGenres, setSelectValueGenres] = useState([]);
@@ -109,6 +109,7 @@ const Search = () => {
                 setResults([]);
             }
         };
+        // if (getAnimes === undefined) return <h1>No Results</h1>;
 
         const timerId = setTimeout(() => {
             getAnimes(
@@ -132,10 +133,10 @@ const Search = () => {
     ]);
 
     const getStateMap = (values, setFunc, attributes = false) => {
-        return values.map((result, i) => {
+        return values.map((result) => {
             return (
                 <div
-                    key={i}
+                    key={result.id}
                     onClick={(e) => setFunc(e.target.innerText)}
                     value={result}
                     type="submit"
@@ -149,7 +150,7 @@ const Search = () => {
 
     const renderedAnime = results?.map((result) => {
         return (
-            <div>
+            <div key={result.id}>
                 <Card data={result.attributes} />
             </div>
         );

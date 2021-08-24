@@ -1,9 +1,9 @@
 import React from "react";
 import "./Landing.css";
-import stats from "./imgs/stats.svg";
-import social from "./imgs/social.svg";
-import apps from "./imgs/apps.svg";
-import custom from "./imgs/custom.svg";
+import stats from "../../../components/layout/imgs/stats.svg";
+import social from "../../../components/layout/imgs/social.svg";
+import apps from "../../../components/layout/imgs/apps.svg";
+import custom from "../../../components/layout/imgs/custom.svg";
 import { Link } from "react-router-dom";
 
 const Landing = () => {

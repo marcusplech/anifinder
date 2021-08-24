@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import content from "./layout/static";
+import content from "../layout/static";
 import "./Form.css";
 import { Link } from "react-router-dom";
 

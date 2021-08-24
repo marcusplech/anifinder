@@ -1,7 +1,7 @@
 import React from "react";
-import Landing from "./layout/Landing";
-import Search from "./Search";
-import HomeCards from "./HomeCards";
+import Landing from "./Landing/Landing";
+import Search from "./Search/Search";
+import HomeCards from "./Cards/HomeCards";
 // import HomeList from "./HomeList";
 
 const Home = () => {

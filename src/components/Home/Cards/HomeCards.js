@@ -8,9 +8,9 @@ import {
     fetchShowComing,
     fetchShowGenres,
     fetchShowPopularity,
-} from "../state/action-creators/";
+} from "../../../state/action-creators/";
 
-import { selectors } from "../state/selectors/returns";
+import { selectors } from "../../../state/selectors/returns";
 
 import { useDispatch, useSelector } from "react-redux";
 

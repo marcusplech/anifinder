@@ -27,7 +27,7 @@ const NavBar = (props) => {
     return (
         <header className={`navbar ${single}`}>
             <div className="wrap-guest">
-                <Link to="/" data-testid="icon-logo" className="icon-logo">
+                <Link to="/" className="icon-logo">
                     <img
                         src={logo}
                         alt="icon logo"

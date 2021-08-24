@@ -5,20 +5,19 @@ import "./Search.css";
 import { selectors } from "../state/selectors/returns";
 import { useSelector } from "react-redux";
 
-import HomeCards from "./HomeCards";
 import Card from "./Card";
 import Dropdown from "./Dropdown";
 
 const Search = () => {
-    const stateGenres = useSelector(selectors.getGenres);
     const [selectValueGenres, setSelectValueGenres] = useState([]);
     const [selectValueYears, setSelectValueYears] = useState([]);
     const [selectValueFormat, setSelectValueFormat] = useState([]);
     const [selectValueAiring, setSelectValueAiring] = useState([]);
-
     const [text, setText] = useState("");
-
     const [results, setResults] = useState([]);
+
+    const stateGenres = useSelector(selectors.getGenres);
+    const ref = useRef();
 
     //DROPDOWN
     const [openGenres, setOpenGenres] = useState(false);
@@ -28,8 +27,6 @@ const Search = () => {
     const arrYears = Array.from({ length: 40 }, (_, i) => 2022 - i);
     const formats = ["TV", "Movie", "Special", "OVA", "ONA", "Music"];
     const airingStatus = ["Finished", "Current", "Unreleased", "TBA"];
-
-    const ref = useRef();
 
     const openDropDown = (type) => {
         switch (type) {
@@ -374,7 +371,6 @@ const Search = () => {
                 <div className="landing-section">
                     <div className="results">{renderedAnime}</div>
                 </div>
-                <HomeCards />
             </div>
         </div>
     );

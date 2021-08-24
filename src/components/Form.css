@@ -57,6 +57,19 @@
     padding: 10px 30px;
 }
 
+.back-submit {
+    background: rgb(61, 180, 242);
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 10px 30px;
+}
+
 .checkbox-container {
     color: #606266;
     font-weight: 500;

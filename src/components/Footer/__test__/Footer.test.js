@@ -4,6 +4,6 @@ import { MemoryRouter } from "react-router";
 
 import Footer from "../Footer";
 
-test("Render component", () => {
+it("Render component", () => {
     render(<Footer />, { wrapper: MemoryRouter });
 });

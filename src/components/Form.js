@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import content from "./layout/static";
 import "./Form.css";
+import { Link } from "react-router-dom";
 
 import Modal from "./Modal";
 
@@ -43,6 +44,11 @@ const Form = () => {
                                         </span>
                                     </label>
                                 </div>
+                                <Link to="/">
+                                    <div type="submit" className="back-submit">
+                                        Back To Home
+                                    </div>
+                                </Link>
                                 <div
                                     onClick={() => setIsModalVisible(true)}
                                     type="submit"

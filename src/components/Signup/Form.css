@@ -46,6 +46,7 @@
 }
 
 .submit {
+    border: none;
     background: rgb(61, 180, 242);
     border-radius: 3px;
     color: rgb(255, 255, 255);
@@ -54,10 +55,17 @@
     font-size: 15px;
     font-weight: 600;
     margin-top: 10px;
-    padding: 10px 30px;
+    padding: 13px 20px;
+}
+
+button[disabled="disabled"],
+button:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
 }
 
 .back-submit {
+    border: none;
     background: rgb(61, 180, 242);
     border-radius: 3px;
     color: rgb(255, 255, 255);
@@ -67,7 +75,7 @@
     font-weight: 600;
     margin-top: 10px;
     margin-right: 10px;
-    padding: 10px 30px;
+    padding: 13px 20px;
 }
 
 .checkbox-container {

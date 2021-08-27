@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // Import Components
-import Form from "./components/Signup/Form";
-import NavBar from "./components/Header/NavBar";
-import Home from "./components/Home/Home";
-import SinglePageAnime from "./components/SinglePage/SinglePageAnime";
-import Footer from "./components/Footer/Footer";
+import {
+    NavBar,
+    Home,
+    SinglePageAnime,
+    Footer,
+    SignupPage,
+} from "./components";
 
 const App = () => {
     return (
@@ -22,7 +24,7 @@ const App = () => {
                             exact
                             component={SinglePageAnime}
                         />
-                        <Route path="/signup" exact component={Form} />
+                        <Route path="/signup" exact component={SignupPage} />
                     </Switch>
                 </div>
                 <Footer />

@@ -150,8 +150,8 @@ const Search = () => {
 
     const renderedAnime = results?.map((result) => {
         return (
-            <div key={result.id}>
-                <Card data={result.attributes} />
+            <div>
+                <Card key={result.id} data={result.attributes} />
             </div>
         );
     });

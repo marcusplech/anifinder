@@ -111,6 +111,13 @@
     cursor: pointer;
 }
 
+.no-results {
+    color: rgb(81, 97, 112);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Responsividade */
 
 @media (max-width: 1540px) {

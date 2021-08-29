@@ -2,7 +2,10 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom";
+import { Provider } from "react-redux";
+import { store } from "../../../state/store";
 
+import Home from "../../Home/Home";
 import Signup from "../Signup";
 import SignupPage from "../SignupPage";
 
@@ -14,6 +17,7 @@ describe("Tests on Form Component", () => {
             </MemoryRouter>
         );
     });
+
     it("updates on change input email value", () => {
         const emailInput = screen.queryByPlaceholderText("Email");
 
@@ -48,7 +52,22 @@ describe("Tests on Form Component", () => {
 
     it("Check if have a button back to home", () => {
         const button = screen.getByRole("button", { name: /back to home/i });
+
         expect(button).toBeInTheDocument();
+
+        fireEvent.click(button);
+        const { getByRole } = render(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Home />
+                </MemoryRouter>
+            </Provider>
+        );
+        const landing = getByRole("heading", {
+            name: /the next-generation anime platform/i,
+        });
+
+        expect(landing).toBeInTheDocument();
     });
 
     it("Check if have a button signup", () => {
@@ -70,10 +89,9 @@ describe("Tests on Form Component", () => {
         fireEvent.change(confirmInput, { target: { value: "test" } });
 
         expect(button).toBeEnabled();
-        const { getByRole } = render(<Signup />);
-        const modal = getByRole("heading", {
-            name: /please note/i,
-        });
-        expect(modal).toBeVisible();
+        fireEvent.click(button);
+        const { getAllByText } = render(<Signup />);
+        const modal = getAllByText("Please note");
+        expect(modal).toBeTruthy();
     });
 });

@@ -1,9 +1,12 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router";
+import { Provider } from "react-redux";
+import { store } from "../../../state/store";
 
 import NavBar from "../NavBar";
+import Home from "../../Home/Home";
 
 describe("All tests on NavBar Component", () => {
     beforeEach(() => {
@@ -25,5 +28,20 @@ describe("All tests on NavBar Component", () => {
         expect(
             screen.getByRole("img", { name: /icon logo/i })
         ).toBeInTheDocument();
+
+        fireEvent.click(logoDom);
+
+        const { getByRole } = render(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Home />
+                </MemoryRouter>
+            </Provider>
+        );
+        const landing = getByRole("heading", {
+            name: /the next-generation anime platform/i,
+        });
+
+        expect(landing).toBeInTheDocument();
     });
 });

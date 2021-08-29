@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Card from "../Cards/Card";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Search = () => {
+const Search = (props) => {
     const [selectValueGenres, setSelectValueGenres] = useState([]);
     const [selectValueYears, setSelectValueYears] = useState([]);
     const [selectValueFormat, setSelectValueFormat] = useState([]);
@@ -103,13 +103,16 @@ const Search = () => {
                 fetch(url)
                     .then((res) => res.json())
                     .then((newData) => {
-                        setResults(newData.data);
+                        if (newData.data.length > 0) {
+                            setResults(newData.data);
+                        } else {
+                            setResults(null);
+                        }
                     });
             } else {
                 setResults([]);
             }
         };
-        // if (getAnimes === undefined) return <h1>No Results</h1>;
 
         const timerId = setTimeout(() => {
             getAnimes(
@@ -132,11 +135,15 @@ const Search = () => {
         selectValueAiring,
     ]);
 
+    useEffect(() => {
+        props.search(results);
+    }, [results, props]);
+
     const getStateMap = (values, setFunc, attributes = false) => {
         return values.map((result) => {
             return (
                 <div
-                    key={result.id}
+                    key={Math.random() * 100000}
                     onClick={(e) => setFunc(e.target.innerText)}
                     value={result}
                     type="submit"
@@ -173,6 +180,7 @@ const Search = () => {
                                     }}
                                 ></img>
                                 <input
+                                    placeholder="Search..."
                                     onClick={() => openDropDown("Search")}
                                     value={text}
                                     onChange={(e) => setText(e.target.value)}
@@ -213,7 +221,7 @@ const Search = () => {
                                     </svg>
                                 </div>
                                 <Dropdown
-                                    key={openGenres}
+                                    key={"openGenres"}
                                     open={openGenres}
                                     setOpen={setOpenGenres}
                                     title="Genres"
@@ -259,7 +267,7 @@ const Search = () => {
                                         />
                                     </svg>
                                     <Dropdown
-                                        key={openYear}
+                                        key={"openYear"}
                                         open={openYear}
                                         setOpen={setOpenYear}
                                         title="Years"
@@ -308,7 +316,7 @@ const Search = () => {
                                     </svg>
                                     <Dropdown
                                         title="Format"
-                                        key={openFormat}
+                                        key={"openFormat"}
                                         open={openFormat}
                                         setOpen={setOpenFormat}
                                         canal={getStateMap(
@@ -356,7 +364,7 @@ const Search = () => {
                                     </svg>
                                     <Dropdown
                                         title="Airing"
-                                        key={openAiring}
+                                        key={"openAiring"}
                                         open={openAiring}
                                         setOpen={setOpenAiring}
                                         canal={getStateMap(
@@ -370,7 +378,11 @@ const Search = () => {
                     </div>
                 </div>
                 <div className="landing-section">
-                    <div className="results">{renderedAnime}</div>
+                    {results ? (
+                        <div className="results">{renderedAnime}</div>
+                    ) : (
+                        <h2 className="no-results">No Results</h2>
+                    )}
                 </div>
             </div>
         </div>

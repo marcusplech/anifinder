@@ -129,3 +129,10 @@
         padding: 6px;
     }
 }
+
+@media (min-width: 760px) and (max-width: 1040px) {
+    .footer-container2 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}

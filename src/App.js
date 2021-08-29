@@ -15,8 +15,8 @@ const App = () => {
     return (
         <>
             <Router>
-                <NavBar />
-                <div className="main-container">
+                <div className="App">
+                    <NavBar />
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route
@@ -26,8 +26,8 @@ const App = () => {
                         />
                         <Route path="/signup" exact component={SignupPage} />
                     </Switch>
+                    <Footer />
                 </div>
-                <Footer />
             </Router>
         </>
     );

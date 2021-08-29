@@ -1,5 +1,6 @@
 .form-content {
     min-height: 100vh;
+    margin-top: 60px;
 }
 
 .form-container {
@@ -9,7 +10,6 @@
     border-radius: 4px;
     padding: 40px;
     text-align: center;
-    margin-top: 60px;
     margin: 0 auto;
     min-width: 320px;
 }

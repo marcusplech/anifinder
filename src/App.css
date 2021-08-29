@@ -17,8 +17,6 @@
 
 html,
 body {
-    width: 100%;
-    height: 100%;
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
@@ -30,14 +28,13 @@ body {
     box-sizing: border-box;
 }
 
-.main-container {
+.App {
     grid-template-rows: auto 1fr auto;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 @media (max-width: 760px) {
-    .main-container {
+    .App {
         margin-top: 0px;
     }
 }

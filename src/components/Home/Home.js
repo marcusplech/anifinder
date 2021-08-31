@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className="main content" style={{ minHeight: "100vh" }}>
             <Landing />
-            <Search key={"search"} search={setSearch} />
+            <Search search={setSearch} />
             {search && !search.length ? <HomeCards /> : ""}
             {/* Colocar quando tiver tempo */}
             {/* <HomeList /> */}

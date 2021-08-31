@@ -143,7 +143,7 @@ const Search = (props) => {
         return values.map((result) => {
             return (
                 <div
-                    key={Math.random() * 100000}
+                    key={attributes ? result.attributes.name : result}
                     onClick={(e) => setFunc(e.target.innerText)}
                     value={result}
                     type="submit"
@@ -221,7 +221,6 @@ const Search = (props) => {
                                     </svg>
                                 </div>
                                 <Dropdown
-                                    key={"openGenres"}
                                     open={openGenres}
                                     setOpen={setOpenGenres}
                                     title="Genres"
@@ -267,7 +266,6 @@ const Search = (props) => {
                                         />
                                     </svg>
                                     <Dropdown
-                                        key={"openYear"}
                                         open={openYear}
                                         setOpen={setOpenYear}
                                         title="Years"
@@ -316,7 +314,6 @@ const Search = (props) => {
                                     </svg>
                                     <Dropdown
                                         title="Format"
-                                        key={"openFormat"}
                                         open={openFormat}
                                         setOpen={setOpenFormat}
                                         canal={getStateMap(
@@ -364,7 +361,6 @@ const Search = (props) => {
                                     </svg>
                                     <Dropdown
                                         title="Airing"
-                                        key={"openAiring"}
                                         open={openAiring}
                                         setOpen={setOpenAiring}
                                         canal={getStateMap(

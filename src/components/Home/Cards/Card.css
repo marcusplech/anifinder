@@ -170,3 +170,27 @@ img.image-load {
         width: 0;
     }
 }
+
+@media (max-width: 1400px) {
+    .hover-data.right {
+        margin-left: 18px;
+        left: -35%;
+        top: -50%;
+    }
+
+    .hover-data.right::before {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid currentColor;
+        bottom: -10px;
+        left: 45%;
+        top: 100%;
+    }
+}
+
+@media (max-width: 1040px) {
+    .media-card:hover .hover-data.right {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

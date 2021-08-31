@@ -1,4 +1,5 @@
 const selectors = {
+    getAnimes: (state) => state.fetch,
     getTrending: (state) => state.fetch.trending,
     getGenres: (state) => state.fetch.genres,
     getRated: (state) => state.fetch.rated,

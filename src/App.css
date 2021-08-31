@@ -30,7 +30,6 @@ body {
 
 .App {
     grid-template-rows: auto 1fr auto;
-    /* margin-bottom: 20px; */
 }
 
 @media (max-width: 760px) {

@@ -5,10 +5,12 @@ import "./Search.css";
 import { selectors } from "../../../state/selectors/returns";
 import { useSelector } from "react-redux";
 
+import Spinner from "../../layout/Spinner";
 import Card from "../Cards/Card";
 import Dropdown from "../Dropdown/Dropdown";
 
 const Search = (props) => {
+    const [loading, setLoading] = useState(true);
     const [selectValueGenres, setSelectValueGenres] = useState([]);
     const [selectValueYears, setSelectValueYears] = useState([]);
     const [selectValueFormat, setSelectValueFormat] = useState([]);
@@ -100,15 +102,22 @@ const Search = (props) => {
             }
 
             if (url !== "https://kitsu.io/api/edge/anime?") {
-                fetch(url)
-                    .then((res) => res.json())
-                    .then((newData) => {
-                        if (newData.data.length > 0) {
-                            setResults(newData.data);
-                        } else {
-                            setResults(null);
-                        }
-                    });
+                setLoading(false);
+                try {
+                    fetch(url)
+                        .then((res) => res.json())
+                        .then((newData) => {
+                            setLoading(true);
+                            if (newData.data.length > 0) {
+                                setResults(newData.data);
+                            } else {
+                                setResults(null);
+                            }
+                        });
+                    setLoading(false);
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 setResults([]);
             }
@@ -164,224 +173,248 @@ const Search = (props) => {
     });
 
     return (
-        <div className="search">
-            <div className="container">
-                <div className="filters-wrap">
-                    <div ref={ref} className="filters">
-                        <div className="filter-select">
-                            <div className="name">Search</div>
-                            <div className="search-wrap">
-                                <img
-                                    src={icon}
-                                    alt="icon-search"
-                                    style={{
-                                        fontSize: "13px",
-                                        height: "1rem",
-                                    }}
-                                ></img>
-                                <input
-                                    placeholder="Search..."
-                                    onClick={() => openDropDown("Search")}
-                                    value={text}
-                                    onChange={(e) => setText(e.target.value)}
-                                    type="search"
-                                    autoComplete="off"
-                                    className="input-search"
-                                ></input>
-                            </div>
-                        </div>
-                        <div className="filter-select">
-                            <div className="name">Genres</div>
-                            <div className="select-wrap">
-                                <div className="select">
+        <>
+            <div className="search">
+                <div className="container">
+                    <div className="filters-wrap">
+                        <div ref={ref} className="filters">
+                            <div className="filter-select">
+                                <div className="name">Search</div>
+                                <div className="search-wrap">
+                                    <img
+                                        src={icon}
+                                        alt="icon-search"
+                                        style={{
+                                            fontSize: "13px",
+                                            height: "1rem",
+                                        }}
+                                    ></img>
                                     <input
+                                        placeholder="Search..."
+                                        onClick={() => openDropDown("Search")}
+                                        value={text}
                                         onChange={(e) =>
-                                            setSelectValueGenres(e.target.value)
+                                            setText(e.target.value)
                                         }
-                                        onClick={() => openDropDown("Genres")}
-                                        value={selectValueGenres}
-                                        placeholder="Any"
                                         type="search"
                                         autoComplete="off"
-                                        className="filter"
+                                        className="input-search"
                                     ></input>
-                                    <svg
-                                        onClick={() => openDropDown("Genres")}
-                                        className="chevrondown"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
                                 </div>
-                                <Dropdown
-                                    open={openGenres}
-                                    setOpen={setOpenGenres}
-                                    title="Genres"
-                                    canal={getStateMap(
-                                        stateGenres,
-                                        setSelectValueGenres,
-                                        true
-                                    )}
-                                />
                             </div>
-                        </div>
-                        <div className="filter-select">
-                            <div className="name">Year</div>
-                            <div className="select-wrap">
-                                <div id="select" className="select">
-                                    <div className="value-wrap">
+                            <div className="filter-select">
+                                <div className="name">Genres</div>
+                                <div className="select-wrap">
+                                    <div className="select">
                                         <input
-                                            onClick={() => openDropDown("Year")}
                                             onChange={(e) =>
-                                                setSelectValueYears(
+                                                setSelectValueGenres(
                                                     e.target.value
                                                 )
                                             }
-                                            value={selectValueYears}
+                                            onClick={() =>
+                                                openDropDown("Genres")
+                                            }
+                                            value={selectValueGenres}
                                             placeholder="Any"
                                             type="search"
                                             autoComplete="off"
                                             className="filter"
                                         ></input>
+                                        <svg
+                                            onClick={() =>
+                                                openDropDown("Genres")
+                                            }
+                                            className="chevrondown"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
                                     </div>
-                                    <svg
-                                        onClick={() => openDropDown("Year")}
-                                        className="chevrondown"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
-                                            fill="currentColor"
-                                        />
-                                    </svg>
                                     <Dropdown
-                                        open={openYear}
-                                        setOpen={setOpenYear}
-                                        title="Years"
+                                        open={openGenres}
+                                        setOpen={setOpenGenres}
+                                        title="Genres"
                                         canal={getStateMap(
-                                            arrYears,
-                                            setSelectValueYears
+                                            stateGenres,
+                                            setSelectValueGenres,
+                                            true
                                         )}
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="filter-select">
-                            <div className="name">Format</div>
-                            <div className="select-wrap">
-                                <div className="select">
-                                    <div className="value-wrap">
-                                        <input
-                                            onChange={(e) =>
-                                                setSelectValueFormat(
-                                                    e.target.value
-                                                )
-                                            }
+                            <div className="filter-select">
+                                <div className="name">Year</div>
+                                <div className="select-wrap">
+                                    <div id="select" className="select">
+                                        <div className="value-wrap">
+                                            <input
+                                                onClick={() =>
+                                                    openDropDown("Year")
+                                                }
+                                                onChange={(e) =>
+                                                    setSelectValueYears(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                value={selectValueYears}
+                                                placeholder="Any"
+                                                type="search"
+                                                autoComplete="off"
+                                                className="filter"
+                                            ></input>
+                                        </div>
+                                        <svg
+                                            onClick={() => openDropDown("Year")}
+                                            className="chevrondown"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                        <Dropdown
+                                            open={openYear}
+                                            setOpen={setOpenYear}
+                                            title="Years"
+                                            canal={getStateMap(
+                                                arrYears,
+                                                setSelectValueYears
+                                            )}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="filter-select">
+                                <div className="name">Format</div>
+                                <div className="select-wrap">
+                                    <div className="select">
+                                        <div className="value-wrap">
+                                            <input
+                                                onChange={(e) =>
+                                                    setSelectValueFormat(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                onClick={() =>
+                                                    openDropDown("Format")
+                                                }
+                                                value={selectValueFormat}
+                                                placeholder="Any"
+                                                type="search"
+                                                autoComplete="off"
+                                                className="filter"
+                                            ></input>
+                                        </div>
+                                        <svg
                                             onClick={() =>
                                                 openDropDown("Format")
                                             }
-                                            value={selectValueFormat}
-                                            placeholder="Any"
-                                            type="search"
-                                            autoComplete="off"
-                                            className="filter"
-                                        ></input>
-                                    </div>
-                                    <svg
-                                        onClick={() => openDropDown("Format")}
-                                        className="chevrondown"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
-                                            fill="currentColor"
+                                            className="chevrondown"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                        <Dropdown
+                                            title="Format"
+                                            open={openFormat}
+                                            setOpen={setOpenFormat}
+                                            canal={getStateMap(
+                                                formats,
+                                                setSelectValueFormat
+                                            )}
                                         />
-                                    </svg>
-                                    <Dropdown
-                                        title="Format"
-                                        open={openFormat}
-                                        setOpen={setOpenFormat}
-                                        canal={getStateMap(
-                                            formats,
-                                            setSelectValueFormat
-                                        )}
-                                    />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="filter-select">
-                            <div className="name">Airing Status</div>
-                            <div className="select-wrap">
-                                <div className="select">
-                                    <div className="value-wrap">
-                                        <input
-                                            onChange={(e) =>
-                                                setSelectValueAiring(
-                                                    e.target.value
-                                                )
-                                            }
+                            <div className="filter-select">
+                                <div className="name">Airing Status</div>
+                                <div className="select-wrap">
+                                    <div className="select">
+                                        <div className="value-wrap">
+                                            <input
+                                                onChange={(e) =>
+                                                    setSelectValueAiring(
+                                                        e.target.value
+                                                    )
+                                                }
+                                                onClick={() =>
+                                                    openDropDown("Airing")
+                                                }
+                                                value={selectValueAiring}
+                                                placeholder="Any"
+                                                type="search"
+                                                autoComplete="off"
+                                                className="filter"
+                                            ></input>
+                                        </div>
+                                        <svg
                                             onClick={() =>
                                                 openDropDown("Airing")
                                             }
-                                            value={selectValueAiring}
-                                            placeholder="Any"
-                                            type="search"
-                                            autoComplete="off"
-                                            className="filter"
-                                        ></input>
-                                    </div>
-                                    <svg
-                                        onClick={() => openDropDown("Airing")}
-                                        className="chevrondown"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
-                                            fill="currentColor"
+                                            className="chevrondown"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6.34317 7.75732L4.92896 9.17154L12 16.2426L19.0711 9.17157L17.6569 7.75735L12 13.4142L6.34317 7.75732Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                        <Dropdown
+                                            title="Airing"
+                                            open={openAiring}
+                                            setOpen={setOpenAiring}
+                                            canal={getStateMap(
+                                                airingStatus,
+                                                setSelectValueAiring
+                                            )}
                                         />
-                                    </svg>
-                                    <Dropdown
-                                        title="Airing"
-                                        open={openAiring}
-                                        setOpen={setOpenAiring}
-                                        canal={getStateMap(
-                                            airingStatus,
-                                            setSelectValueAiring
-                                        )}
-                                    />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="landing-section">
-                    {results ? (
-                        <div className="results">{renderedAnime}</div>
-                    ) : (
-                        <h2 className="no-results">No Results</h2>
-                    )}
+                    <div>
+                        {loading ? (
+                            <div className="landing-section">
+                                {results ? (
+                                    <div className="results">
+                                        {renderedAnime}
+                                    </div>
+                                ) : (
+                                    <h2 className="no-results">No Results</h2>
+                                )}
+                            </div>
+                        ) : (
+                            <Spinner />
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

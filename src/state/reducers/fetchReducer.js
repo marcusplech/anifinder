@@ -5,6 +5,7 @@ import {
     FETCH_GENRES,
     FETCH_COMING,
     FETCH_POPULARITY,
+    FETCH_ANIME,
 } from "../action-creators/types";
 
 const INITIAL_STATE = {

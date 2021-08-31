@@ -72,7 +72,12 @@ const FormContent = () => {
 
             <div className="checkbox-container">
                 <label className="label-checkbox">
-                    <input name="toggle" type="checkbox"></input>
+                    <input
+                        checked
+                        name="toggle"
+                        type="checkbox"
+                        disabled={isFormInvalid}
+                    ></input>
                     <span>You agree to our terms of service</span>
                 </label>
             </div>

@@ -10,7 +10,6 @@ const SinglePageAnime = (props) => {
     const id = props.location.pathname.split("/")[1];
     const idName = id.replace("-", " ");
     const [singleAnimeData, setSingleAnimeData] = useState(null);
-    const [debouncedText, setDebouncedText] = useState(id);
 
     const renderContent = () => {
         if (singleAnimeData) {
@@ -202,14 +201,6 @@ const SinglePageAnime = (props) => {
             );
         }
     };
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            setDebouncedText(id);
-        }, 500);
-        return () => {
-            clearTimeout(timerId);
-        };
-    }, [id]);
 
     useEffect(() => {
         const search = () => {
@@ -224,7 +215,7 @@ const SinglePageAnime = (props) => {
             }
         };
         search();
-    }, [debouncedText, id]);
+    }, [id]);
 
     return <>{renderContent(props)}</>;
 };

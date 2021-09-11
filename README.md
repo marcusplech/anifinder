@@ -5,7 +5,7 @@ This is a personal side project of mine (made with React and Redux), which is ba
 
 Home Page            |  Home Page
 :-------------------------:|:-------------------------:
-![](https://i.ibb.co/xCj66zS/Homepage1.jpg)  |  ![](https://i.ibb.co/6Zk3S2n/Homepage2.jpg)
+![](https://i.ibb.co/QfQST8X/anifinderhome1.png)  |  ![](https://i.ibb.co/6Zk3S2n/Homepage2.jpg)
 
 Search Anime        |  Anime Single Page
 :-------------------------:|:-------------------------:

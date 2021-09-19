@@ -13,7 +13,7 @@ Search Anime        |  Anime Single Page
 
 ## How to run it
 
-Simply type consecutively:
+Just type in the terminal:
 
 ### `npm i`
 ### `npm start`

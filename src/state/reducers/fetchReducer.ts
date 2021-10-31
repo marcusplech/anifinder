@@ -7,6 +7,16 @@ import {
     FETCH_POPULARITY,
 } from "../action-creators/types";
 
+
+interface State {
+    trending: string[],
+    rated: string[],
+    airing: string[],
+    genres: string[],
+    coming: string[],
+    popylarity: string[],
+}
+
 const INITIAL_STATE = {
     trending: [],
     rated: [],
@@ -16,7 +26,14 @@ const INITIAL_STATE = {
     popylarity: [],
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+interface Action {
+    type: string;
+    payload: unknown;
+    status: string;
+}
+
+
+const reducer = (state: State = INITIAL_STATE, action: Action) => {
     switch (action.type) {
         case FETCH_TRENDING:
             return {

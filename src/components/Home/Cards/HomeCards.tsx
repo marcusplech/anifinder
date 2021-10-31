@@ -8,7 +8,9 @@ import {
     fetchShowComing,
     fetchShowGenres,
     fetchShowPopularity,
-} from "../../../state/action-creators/";
+} from "../../../state/action-creators";
+
+import { ICard } from "../../../types/Types";
 import Spinner from "../../layout/Spinner";
 
 import { selectors } from "../../../state/selectors/returns";
@@ -54,12 +56,14 @@ const HomeCards = () => {
                                 <h3>Trending Now</h3>
                             </div>
                             <div className="results">
-                                {stateTrending.map((dado) => (
-                                    <Card
-                                        key={dado.attributes.canonicalTitle}
-                                        data={dado.attributes}
-                                    />
-                                ))}
+                                {stateTrending.map((data: ICard) => {
+                                    return (
+                                        <Card
+                                            key={data.attributes?.slug}
+                                            attributes={data.attributes}
+                                        />
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className="landing-section">
@@ -67,12 +71,14 @@ const HomeCards = () => {
                                 <h3>Top Airing Anime</h3>
                             </div>
                             <div className="results">
-                                {stateAiring.map((dado) => (
-                                    <Card
-                                        key={dado.attributes.canonicalTitle}
-                                        data={dado.attributes}
-                                    />
-                                ))}
+                                {stateAiring.map((data: ICard) => {
+                                    return (
+                                        <Card
+                                            key={data.attributes.slug}
+                                            attributes={data?.attributes}
+                                        />
+                                    )
+                                })}
                             </div>
                         </div>
                         <div className="landing-section">
@@ -80,10 +86,10 @@ const HomeCards = () => {
                                 <h3>Highest Rated Anime</h3>
                             </div>
                             <div className="results">
-                                {stateRated.map((dado) => (
+                                {stateRated.map((data: ICard) => (
                                     <Card
-                                        key={dado.attributes.canonicalTitle}
-                                        data={dado.attributes}
+                                        key={data.attributes.slug}
+                                        attributes={data?.attributes}
                                     />
                                 ))}
                             </div>
@@ -93,10 +99,10 @@ const HomeCards = () => {
                                 <h3>Upcoming Anime</h3>
                             </div>
                             <div className="results">
-                                {stateComing.map((dado) => (
+                                {stateComing.map((data: ICard) => (
                                     <Card
-                                        key={dado.attributes.canonicalTitle}
-                                        data={dado.attributes}
+                                        key={data.attributes.slug}
+                                        attributes={data?.attributes}
                                     />
                                 ))}
                             </div>

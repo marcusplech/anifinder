@@ -1,16 +1,18 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 import "./Card.css";
 
-const Card = (props) => {
-    const image = props.data.posterImage?.small;
+import { ICard } from "../../../types/Types";
+
+const Card = ({ attributes }: ICard) => {
+    const { episodeCount, slug, totalLength, canonicalTitle, averageRating, ageRatingGuide, subtype, status } = attributes || {}
+    const image = attributes?.posterImage.small;
 
     const epiCount = () => {
-        if (props.data.episodeCount > 1) {
-            return `${props.data.episodeCount} Episodes`;
-        } else if (props.data.episodeCount === 1) {
-            return `${props.data.episodeCount} Episode`;
+        if (episodeCount > 1) {
+            return `${episodeCount} Episodes`;
+        } else if (episodeCount === 1) {
+            return `${episodeCount} Episode`;
         } else {
             return "Episode";
         }
@@ -19,21 +21,21 @@ const Card = (props) => {
     return (
         <Link
             className="media-card"
-            to={`/${props.data.slug}/${props.data.totalLength}`}
+            to={`/${slug}/${totalLength}`}
         >
             <div className="cover">
                 <img
                     className="image-load"
                     key={image}
                     src={image}
-                    alt={`Capa de fundo ${props.data.canonicalTitle}`}
+                    alt={`Capa de fundo ${canonicalTitle}`}
                 ></img>
             </div>
-            <span className="title-card">{props.data.canonicalTitle}</span>
+            <span className="title-card">{canonicalTitle}</span>
             <div className="hover-data right">
                 <div className="header">
                     <div className="anime-name">
-                        {props.data.canonicalTitle}
+                        {canonicalTitle}
                     </div>
                     <div className="score">
                         <svg
@@ -54,19 +56,19 @@ const Card = (props) => {
                             />
                         </svg>
                         <span className="percentage">
-                            {`${Math.round(props.data.averageRating)}%`}
+                            {`${(averageRating)}%`}
                         </span>
                     </div>
                 </div>
-                <div className="studios">{props.data.ageRatingGuide}</div>
+                <div className="studios">{ageRatingGuide}</div>
                 <div className="info">
-                    <span>{props.data.subtype}</span>
+                    <span>{subtype}</span>
                     <span className="separator" style={{ padding: "0 4px" }}>
                         •
                     </span>
                     <span>{epiCount()}</span>
                     <div className="genres">
-                        <div className="genre">{props.data.status}</div>
+                        <div className="genre">{status}</div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const Dropdown = ({
     setOpen,
     title,
     canal,
-    onClose = () => {},
+    onClose = () => { },
 }) => {
     const handleClickOutside = (e) => {
         if (e.target.id === id) onClose();

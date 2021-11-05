@@ -166,11 +166,10 @@ const Search = (props) => {
 
     const renderedAnime = results?.map((result) => {
         return (
-            <div>
-                <Card key={result.id} data={result.attributes} />
-            </div>
-        );
-    });
+            <Card key={result.id} attributes={result.attributes} />
+        )
+    }
+    );
 
     return (
         <>

@@ -13,6 +13,13 @@ export interface ICard {
         }
     }
 }
+export interface DropdownTypes {
+    search: string,
+    genres: string,
+    year: string,
+    airing: string,
+    format: string,
+}
 
 export interface IFetch {
     data: ICard[]

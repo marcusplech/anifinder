@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "./Styles/Base.css";
+@import "./Styles/Navbar.css";
+@import "./Styles/Footer.css";
+@import "./Styles/Landing.css";
+@import "./Styles/Search.css";
+@import "./Styles/Dropdown.css";
+@import "./Styles/HomeCards.css";
+@import "./Styles/Card.css";
+@import "./Styles/AnimeDetails.css";
+@import "./Styles/SignupForm.css";
+@import "./Styles/SignupModal.css";

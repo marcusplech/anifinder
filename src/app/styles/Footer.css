@@ -1,0 +1,114 @@
+.footer {
+  margin-top: 60px;
+  text-align: center;
+}
+.footer-a {
+  display: block;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: 0.15s;
+  outline: 0;
+  cursor: pointer;
+}
+.footer-a:hover {
+  color: rgb(61, 180, 242);
+}
+.footer-container {
+  background: #11161d;
+  color: #a0b1c5;
+  font-family:
+    Overpass,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+  font-weight: 600;
+  margin-top: 20px;
+  min-height: 100px;
+  padding: 50px 30px;
+  text-align: left;
+  width: 100%;
+}
+.footer-container2 {
+  margin: 0 auto;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  display: flex;
+}
+.h2-footer {
+  color: #3db4f2;
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 14px;
+}
+.light-theme,
+.dark-theme {
+  border-radius: 3px;
+  border: 2px solid #46546b;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  height: 25px;
+  margin-right: 10px;
+  padding-left: 2px;
+  padding-top: 5px;
+  width: 25px;
+}
+.light-theme {
+  background: #edf1f5;
+  color: #2e3c48;
+}
+.footer-links {
+  display: flex;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: auto;
+}
+.footer-section {
+  margin-left: 80px;
+}
+@media (max-width: 1040px) {
+  .footer-container {
+    padding: 30px;
+  }
+  .footer-links {
+    display: block;
+  }
+  .footer-container2 {
+    display: block;
+    padding: 0;
+  }
+  .footer-section {
+    margin: 20px auto 0;
+  }
+  .footer-a {
+    padding: 6px;
+  }
+}
+@media (min-width: 1040px) and (max-width: 1540px) {
+  .footer-container2 {
+    max-width: 1140px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media (max-width: 1540px) {
+  .footer-section {
+    margin-left: 60px;
+  }
+}
+@media (min-width: 760px) and (max-width: 1040px) {
+  .footer-container2 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

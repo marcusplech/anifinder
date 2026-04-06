@@ -1,27 +1,108 @@
-## About this app
-This is a personal side project of mine (made with React and Redux), which is based on a anime community app (namely, AniList) I'm very fond of. It is designed to showcase the most recent and core React skills (as of 2020).
+# AniFinder
 
-## Live demo at https://anifinder.netlify.app/
+Personal anime discovery app inspired by AniList, built with Next.js App Router.
 
-Home Page            |  Home Page
-:-------------------------:|:-------------------------:
-![](https://i.ibb.co/QfQST8X/anifinderhome1.png)  |  ![](https://i.ibb.co/6Zk3S2n/Homepage2.jpg)
+Project created by **Marcus Plech**.
 
-Search Anime        |  Anime Single Page
-:-------------------------:|:-------------------------:
-![](https://i.ibb.co/D75GsYL/search-Animes.jpg)  |  ![](https://i.ibb.co/gdhk0pJ/single-Anime.jpg)
+## Stack
 
-## How to run it
+- Next.js 15 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS 4
+- TanStack React Query 5
+- React Hook Form + Yup
+- Playwright (E2E) + Vitest (unit)
 
-Just type in the terminal:
+## Project Setup
 
-### `npm i`
-### `npm start`
+```bash
+npm install
+npm run dev
+```
 
-## Technical comments
+App runs at `http://localhost:3000`.
 
-This project has lots of modern and advanced features, such as the hook system, a great deal of content managed with Redux, Higher Order Components to make it easy to reuse logic throughout the app and much more. It also contains quite a good deal of complex design system, handled mostly by the new grid and flex system, even complex structures such as the the hovering effect is handled by these two powerful tools.
+## Architecture Overview
 
-## Issues
+```mermaid
+flowchart TD
+    A["Request / (App Router)"] --> B["src/app/page.tsx (Server Component)"]
+    B --> C["prefetchHomeData(queryClient)"]
+    C --> D["src/lib/KitsuClient.ts (Kitsu API)"]
+    B --> E["HydrationBoundary(dehydrate(queryClient))"]
+    E --> F["src/components/home/HomePage.tsx"]
+    F --> G["HomePageClient.tsx ('use client')"]
+    G --> H["Search.tsx + HomeCards.tsx"]
+    H --> I["React Query cache (Provider in src/app/Providers.tsx)"]
+```
 
-Now, I must say if there's one thing that I think I could have done better is the overall design pattern. Needless to say, I've done it from the absolute ground up, so there was always the possibility of committing some crimes in this regard. Also, I should point that the requests are not 100% optimal, it could've been way better perfomance wise (for example, I did a bit more requests when you load the Home Page than you'd actually need and already stored it in the Redux for later use, but this is not a very scalable code practice).
+## Environment Variables
+
+Create `.env.local` (or use `.env.example`) with:
+
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+For production (Vercel), use your real domain.
+
+## Project Configs
+
+### Next.js
+
+- `src/app` uses App Router, with route-level `loading.tsx`, `error.tsx`, and `not-found.tsx`.
+- Global metadata and fonts are configured in `src/app/layout.tsx`.
+- Remote image hosts are allowed in `next.config.mjs`:
+  - `media.kitsu.io`
+  - `media.kitsu.app`
+  - `kitsu.io`
+
+### Tailwind CSS
+
+- Tailwind v4 is enabled via `@tailwindcss/postcss`.
+- Global imports are in `src/app/globals.css`.
+- Tailwind content paths are configured in `tailwind.config.ts`.
+
+### React Hook Form
+
+- Form logic lives in `src/components/Signup/Form.tsx`.
+- Uses `react-hook-form` + `yup` resolver pattern for validation.
+
+### React Query (TanStack)
+
+- Provider configured in `src/app/Providers.tsx`.
+- Query keys centralized in `src/lib/QueryKeys.ts`.
+- API client and typed contracts in:
+  - `src/lib/KitsuClient.ts`
+  - `src/lib/KitsuTypes.ts`
+- Home route uses hydration/prefetch with:
+  - `src/lib/UseHomePrefetch.ts`
+  - `HydrationBoundary` in `src/app/page.tsx`
+
+### E2E (Playwright)
+
+- Config: `playwright.config.ts`
+- Tests: `tests/e2e`
+- Current smoke test:
+  - open home
+  - validate main heading and search input
+  - click first anime card
+  - validate navigation to `/anime/[slug]`
+
+Run commands:
+
+```bash
+npm run e2e:install
+npm run e2e
+```
+
+## Quality Scripts
+
+```bash
+npm run lint
+npm run lint:fix
+npm run format
+npm run format:check
+npm test
+npm run build
+```

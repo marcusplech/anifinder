@@ -1,0 +1,42 @@
+/*Global Styles */
+:root {
+  background-color: #edf1f5;
+  --color-white: 255, 255, 255;
+  --color-shadow: (103, 132, 187);
+  --color-background-300: (221, 230, 238);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-overpass), sans-serif;
+  background-color: #edf1f5;
+  box-sizing: border-box;
+}
+
+.App {
+  grid-template-rows: auto 1fr auto;
+}
+
+@media (max-width: 760px) {
+  .App {
+    margin-top: 0px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

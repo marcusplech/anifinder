@@ -6,6 +6,7 @@ import { HomeCardsSkeleton } from "@/components/Layout/AnimeGridSkeleton";
 import { getAiringAnime, getComingAnime, getRatedAnime, getTrendingAnime } from "@/lib/KitsuClient";
 import { KitsuResource } from "@/lib/KitsuTypes";
 import { queryKeys } from "@/lib/QueryKeys";
+import { homeCardRailSections, homeListingShellClass, resultsGridClass } from "@/lib/ui";
 
 const HomeCards = () => {
   const { data: trendingData, isLoading: isTrendingLoading } = useQuery({
@@ -31,51 +32,29 @@ const HomeCards = () => {
   const stateComing: Array<KitsuResource<CardAttributes>> = comingData?.data ?? [];
   const loading = isTrendingLoading || isAiringLoading || isRatedLoading || isComingLoading;
 
+  const sections = [stateTrending, stateAiring, stateRated, stateComing] as const;
+
   return loading ? (
     <HomeCardsSkeleton />
   ) : (
-    <div className="search-landing">
-      <div className="container">
-        <div className="landing-section home-rail home-rail--trending">
-          <div className="title-link">
-            <h3>Em alta agora</h3>
+    <div className="mt-8">
+      <div className={homeListingShellClass}>
+        {sections.map((items, i) => (
+          <div key={homeCardRailSections[i].title} className="mb-14">
+            <div
+              className={`mb-5 flex items-end border-l-4 pb-0 pl-3.5 ${homeCardRailSections[i].accent} max-[1065px]:mb-5`}
+            >
+              <h3 className="m-0 cursor-pointer text-[13px] font-extrabold uppercase tracking-[0.1em] text-slate-500 transition-colors duration-200 hover:text-indigo-500">
+                {homeCardRailSections[i].title}
+              </h3>
+            </div>
+            <div className={resultsGridClass}>
+              {items.map((data) => (
+                <Card key={data.attributes?.slug} attributes={data.attributes} />
+              ))}
+            </div>
           </div>
-          <div className="results">
-            {stateTrending.map((data) => (
-              <Card key={data.attributes?.slug} attributes={data.attributes} />
-            ))}
-          </div>
-        </div>
-        <div className="landing-section home-rail home-rail--airing">
-          <div className="title-link">
-            <h3>No ar esta temporada</h3>
-          </div>
-          <div className="results">
-            {stateAiring.map((data) => (
-              <Card key={data.attributes.slug} attributes={data.attributes} />
-            ))}
-          </div>
-        </div>
-        <div className="landing-section home-rail home-rail--rated">
-          <div className="title-link">
-            <h3>Melhor avaliados</h3>
-          </div>
-          <div className="results">
-            {stateRated.map((data) => (
-              <Card key={data.attributes.slug} attributes={data.attributes} />
-            ))}
-          </div>
-        </div>
-        <div className="landing-section home-rail home-rail--coming">
-          <div className="title-link">
-            <h3>Em breve</h3>
-          </div>
-          <div className="results">
-            {stateComing.map((data) => (
-              <Card key={data.attributes.slug} attributes={data.attributes} />
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

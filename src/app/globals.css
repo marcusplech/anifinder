@@ -1,14 +1,20 @@
 @import "tailwindcss";
-@import "./styles/Base.css";
-@import "./styles/Navbar.css";
-@import "./styles/Footer.css";
-@import "./styles/Landing.css";
-@import "./styles/HomePage.css";
-@import "./styles/Search.css";
-@import "./styles/Dropdown.css";
-@import "./styles/HomeCards.css";
-@import "./styles/Card.css";
-@import "./styles/AnimeDetails.css";
-@import "./styles/SignupForm.css";
-@import "./styles/SignupModal.css";
-@import "./styles/Skeleton.css";
+
+/* Animação do shimmer dos skeletons (referenciada via arbitrary `animate-[af-shimmer_…]`). */
+@keyframes af-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

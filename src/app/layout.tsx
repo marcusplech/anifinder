@@ -43,9 +43,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${overpass.variable} ${roboto.variable}`}>
+      <body
+        className={`${overpass.variable} ${roboto.variable} min-h-screen overflow-x-hidden bg-gradient-to-br from-[#e8edf4] via-[#dce5f0] to-[#e2e9f2] bg-fixed font-[family-name:var(--font-overpass)] text-slate-900 antialiased`}
+      >
         <Providers>
-          <div className="App">
+          <div className="grid min-h-screen grid-rows-[auto_1fr_auto]">
             <NavBar />
             {children}
             <Footer />

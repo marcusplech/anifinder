@@ -1,17 +1,18 @@
 import React from "react";
-
-const RAIL_CLASS: readonly string[] = [
-  "home-rail--trending",
-  "home-rail--airing",
-  "home-rail--rated",
-  "home-rail--coming",
-];
+import {
+  homeCardRailSections,
+  homeListingShellClass,
+  resultsGridClass,
+  skeletonShimmerClass,
+} from "@/lib/ui";
 
 export function CardSkeleton() {
   return (
-    <div className="skeleton-card">
-      <div className="skeleton-card-poster skeleton-shimmer-fill" />
-      <div className="skeleton-card-title skeleton-shimmer-fill" />
+    <div className="grid w-[185px] max-w-full grid-rows-[min-content_auto] max-[1040px]:w-full">
+      <div
+        className={`h-[265px] w-full rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.06),0_0_0_1px_rgba(15,23,42,0.06)] max-[1040px]:aspect-[185/265] max-[1040px]:h-auto ${skeletonShimmerClass}`}
+      />
+      <div className={`mt-2.5 h-3.5 w-[88%] rounded-md ${skeletonShimmerClass}`} />
     </div>
   );
 }
@@ -22,10 +23,13 @@ type ResultsGridSkeletonProps = {
   label?: string;
 };
 
-export function ResultsGridSkeleton({ count = 12, label = "Carregando resultados…" }: ResultsGridSkeletonProps) {
+export function ResultsGridSkeleton({
+  count = 12,
+  label = "Carregando resultados…",
+}: ResultsGridSkeletonProps) {
   return (
-    <div className="landing-section" role="status" aria-label={label}>
-      <div className="results">
+    <div className="mb-6" role="status" aria-label={label}>
+      <div className={resultsGridClass}>
         {Array.from({ length: count }).map((_, i) => (
           <CardSkeleton key={i} />
         ))}
@@ -49,17 +53,16 @@ export function HomeCardsSkeleton({
   const n = Math.min(Math.max(sections, 1), 4);
 
   return (
-    <div className="search-landing" role="status" aria-label={label}>
-      <div className="container">
+    <div className="mt-8" role="status" aria-label={label}>
+      <div className={homeListingShellClass}>
         {Array.from({ length: n }).map((_, sectionIndex) => (
-          <div
-            key={sectionIndex}
-            className={`landing-section home-rail ${RAIL_CLASS[sectionIndex] ?? "home-rail--trending"}`}
-          >
-            <div className="title-link">
-              <div className="skeleton-section-title skeleton-shimmer-fill" />
+          <div key={sectionIndex} className="mb-14">
+            <div
+              className={`mb-5 flex items-end border-l-4 pb-0 pl-3.5 ${homeCardRailSections[sectionIndex]?.accent ?? homeCardRailSections[0].accent}`}
+            >
+              <div className={`mb-1.5 h-3.5 w-40 max-w-[70%] rounded-md ${skeletonShimmerClass}`} />
             </div>
-            <div className="results">
+            <div className={resultsGridClass}>
               {Array.from({ length: cardsPerSection }).map((_, j) => (
                 <CardSkeleton key={j} />
               ))}

@@ -1,7 +1,7 @@
 /** Portuguese labels for Kitsu `status` values. */
 export function statusLabelPt(
   status: string | null | undefined,
-  whenEmpty = "Desconhecido",
+  whenEmpty = "Desconhecido"
 ): string {
   if (!status) return whenEmpty;
   const map: Record<string, string> = {

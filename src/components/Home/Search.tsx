@@ -11,6 +11,7 @@ import {
   KitsuResource,
 } from "@/lib/KitsuTypes";
 import { ResultsGridSkeleton } from "@/components/Layout/AnimeGridSkeleton";
+import { resultsGridClass } from "@/lib/ui";
 import Card, { CardAttributes } from "./Card";
 import FilterSelect from "./FilterSelect";
 
@@ -128,20 +129,28 @@ const Search = ({ search }: SearchProps) => {
   const yearOptions = arrYears.map((year) => ({ key: String(year), label: String(year) }));
 
   return (
-    <div className="search">
-      <div className="container">
-        <div className="filters-wrap">
-          <div ref={ref} className="filters">
-            <div className="filter-select">
-              <div className="name">Buscar</div>
-              <div className="search-wrap">
+    <div className="mx-auto bg-transparent">
+      <div
+        data-search-shell
+        className="mx-auto mt-7 w-full min-w-[320px] max-w-[1520px] px-5 pb-2 pt-6 sm:px-8 min-[1040px]:px-[50px] min-[1540px]:px-[100px] max-[760px]:mt-5 max-[760px]:pt-5"
+      >
+        <div className="z-[700] mb-1 border-b border-slate-900/[0.06] pb-5">
+          <div
+            ref={ref}
+            className="my-7 mb-5 grid grid-cols-[repeat(auto-fill,170px)] justify-between gap-5 min-[1540px]:grid-cols-[repeat(auto-fill,minmax(240px,1fr))]"
+          >
+            <div className="flex flex-col gap-1.5">
+              <div className="p-0 text-[11px] font-bold uppercase tracking-[0.08em] text-slate-600">
+                Buscar
+              </div>
+              <div className="grid h-[42px] w-full grid-cols-[16px_1fr] items-center gap-2.5 rounded-[10px] border border-[#c5cfdb] bg-[#eef2f6] px-3 py-0 pl-3 text-[13px] font-semibold tracking-wide shadow-[inset_0_1px_2px_rgba(15,23,42,0.05)] transition-[background,border-color,box-shadow] duration-150 hover:border-slate-400 hover:bg-[#e8edf3] focus-within:border-indigo-500 focus-within:bg-white focus-within:shadow-[inset_0_1px_2px_rgba(15,23,42,0.05),0_0_0_3px_rgba(99,102,241,0.2)]">
                 <Image
                   src="/images/icons-search.svg"
                   alt=""
                   aria-hidden="true"
                   width={16}
                   height={16}
-                  className="search-icon"
+                  className="h-4 w-auto text-slate-500 opacity-65"
                 />
                 <input
                   aria-label="Buscar anime"
@@ -151,7 +160,7 @@ const Search = ({ search }: SearchProps) => {
                   onChange={(e) => setText(e.target.value)}
                   type="search"
                   autoComplete="off"
-                  className="input-search"
+                  className="m-0 w-full border-0 bg-transparent p-0 text-sm font-medium leading-tight text-slate-900 outline-none placeholder:text-slate-500"
                 />
               </div>
             </div>
@@ -200,11 +209,13 @@ const Search = ({ search }: SearchProps) => {
         </div>
         <div>
           {!isFetching ? (
-            <div className="landing-section">
+            <div className="mb-6">
               {results ? (
-                <div className="results">{renderedAnime}</div>
+                <div className={resultsGridClass}>{renderedAnime}</div>
               ) : (
-                <h2 className="no-results">Nenhum resultado</h2>
+                <h2 className="flex items-center justify-center text-slate-500">
+                  Nenhum resultado
+                </h2>
               )}
             </div>
           ) : (

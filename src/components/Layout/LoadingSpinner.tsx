@@ -1,17 +1,10 @@
 import React from "react";
 
 const LoadingSpinner = () => (
-  <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
+  <div className="grid min-h-screen place-items-center">
     <div
+      className="h-12 w-12 animate-spin rounded-full border-4 border-indigo-200 border-t-indigo-600"
       aria-label="Carregando…"
-      style={{
-        width: "48px",
-        height: "48px",
-        borderRadius: "9999px",
-        border: "4px solid rgba(53, 119, 255, 0.25)",
-        borderTopColor: "rgb(53, 119, 255)",
-        animation: "spin 0.9s linear infinite",
-      }}
     />
   </div>
 );

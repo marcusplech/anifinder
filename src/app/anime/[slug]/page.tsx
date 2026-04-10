@@ -7,10 +7,14 @@ export default async function AnimeDetailsPage({ params }: { params: Promise<{ s
   const { slug } = await params;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: queryKeys.single(slug),
-    queryFn: () => getAnimeBySlug(slug),
-  });
+  try {
+    await queryClient.prefetchQuery({
+      queryKey: queryKeys.single(slug),
+      queryFn: () => getAnimeBySlug(slug),
+    });
+  } catch (err) {
+    console.warn("[anime page] prefetch Kitsu falhou:", slug, err);
+  }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

@@ -2,21 +2,53 @@
   margin-top: 30px;
 }
 .landing-section {
-  margin-bottom: 50px;
+  margin-bottom: 56px;
 }
 .title-link {
   align-items: flex-end;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--af-border-soft);
 }
 .title-link h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   margin: 0;
   cursor: pointer;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #516170;
+  color: var(--af-text-muted);
+  transition: color 0.2s ease;
+}
+.title-link:hover h3 {
+  color: var(--af-accent);
+}
+
+/* Colored rail accents per section */
+.home-rail .title-link {
+  border-bottom: none;
+  border-left: 4px solid var(--rail-color, var(--af-accent));
+  padding-left: 14px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+
+.home-rail--trending {
+  --rail-color: #ec4899;
+}
+.home-rail--airing {
+  --rail-color: #22d3ee;
+}
+.home-rail--rated {
+  --rail-color: #fbbf24;
+}
+.home-rail--coming {
+  --rail-color: #a78bfa;
+}
+
+.home-rail .title-link h3 {
+  letter-spacing: 0.1em;
 }
 .results {
   display: grid;

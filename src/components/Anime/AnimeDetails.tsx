@@ -6,11 +6,29 @@ import { usePathname } from "next/navigation";
 import { getAnimeBySlug } from "@/lib/KitsuClient";
 import { queryKeys } from "@/lib/QueryKeys";
 import { AnimeAttributes, KitsuResource } from "@/lib/KitsuTypes";
+import { statusLabelPt } from "@/lib/statusLabelPt";
 
 interface AnimeDetailsProps {
   slug?: string;
 }
 type SingleAnime = KitsuResource<AnimeAttributes>;
+
+const formatLabelPt = (format: string | null | undefined) => {
+  if (!format) return "—";
+  const map: Record<string, string> = {
+    TV: "TV",
+    tv: "TV",
+    movie: "Filme",
+    Movie: "Filme",
+    OVA: "OVA",
+    ONA: "ONA",
+    special: "Especial",
+    Special: "Especial",
+    music: "Música",
+    Music: "Música",
+  };
+  return map[format] ?? format;
+};
 
 const AnimeDetails = ({ slug: slugProp }: AnimeDetailsProps) => {
   const pathname = usePathname();
@@ -57,7 +75,7 @@ const AnimeDetails = ({ slug: slugProp }: AnimeDetailsProps) => {
                   {posterImage ? (
                     <Image
                       className="posterImage"
-                      alt={`Imagem de ${id} `}
+                      alt={`Pôster de ${idName}`}
                       src={posterImage}
                       width={215}
                       height={303}
@@ -68,7 +86,7 @@ const AnimeDetails = ({ slug: slugProp }: AnimeDetailsProps) => {
                 </div>
                 <div className="actions">
                   <div className="list">
-                    <div className="add">Add to List</div>
+                    <div className="add">Adicionar à lista</div>
                     <div className="dropdown">
                       <span className="span-dropdown">
                         <svg
@@ -87,7 +105,11 @@ const AnimeDetails = ({ slug: slugProp }: AnimeDetailsProps) => {
                       </span>
                     </div>
                   </div>
-                  <button type="button" className="favourite" aria-label="Add anime to favorites">
+                  <button
+                    type="button"
+                    className="favourite"
+                    aria-label="Adicionar anime aos favoritos"
+                  >
                     <svg
                       className="svg-heart"
                       viewBox="0 0 512 512"
@@ -114,40 +136,40 @@ const AnimeDetails = ({ slug: slugProp }: AnimeDetailsProps) => {
           <div className="sidebar">
             <div className="data">
               <div className="data-set">
-                <div className="type">English</div>
-                <div className="value">{engTitle}</div>
+                <div className="type">Título em inglês</div>
+                <div className="value">{engTitle ?? "—"}</div>
               </div>
               <div className="data-set">
-                <div className="type">Format</div>
-                <div className="value">{format}</div>
+                <div className="type">Formato</div>
+                <div className="value">{formatLabelPt(format)}</div>
               </div>
               <div className="data-set">
-                <div className="type">Episode Duration</div>
-                <div className="value">{`${epiDuration} mins`}</div>
+                <div className="type">Duração do episódio</div>
+                <div className="value">{epiDuration != null ? `${epiDuration} min` : "—"}</div>
               </div>
               <div className="data-set">
                 <div className="type">Status</div>
-                <div className="value">{status}</div>
+                <div className="value">{statusLabelPt(status, "—")}</div>
               </div>
               <div className="data-set">
-                <div className="type">Start Date</div>
-                <div className="value">{startDate}</div>
+                <div className="type">Data de estreia</div>
+                <div className="value">{startDate ?? "—"}</div>
               </div>
               <div className="data-set">
-                <div className="type">Community Approval</div>
-                <div className="value">{`${averageRating}%`}</div>
+                <div className="type">Aprovação da comunidade</div>
+                <div className="value">{averageRating != null ? `${averageRating}%` : "—"}</div>
               </div>
               <div className="data-set">
-                <div className="type">Popularity Rank</div>
-                <div className="value">{popularityRank}</div>
+                <div className="type">Rank de popularidade</div>
+                <div className="value">{popularityRank ?? "—"}</div>
               </div>
               <div className="data-set">
-                <div className="type">Rating Rank</div>
-                <div className="value">{ratingRank}</div>
+                <div className="type">Rank de avaliação</div>
+                <div className="value">{ratingRank ?? "—"}</div>
               </div>
               <div className="data-set">
-                <div className="type">Age Rating</div>
-                <div className="value">{ageRating}</div>
+                <div className="type">Classificação etária</div>
+                <div className="value">{ageRating ?? "—"}</div>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import React from "react";
 const LoadingSpinner = () => (
   <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
     <div
-      aria-label="Loading..."
+      aria-label="Carregando…"
       style={{
         width: "48px",
         height: "48px",

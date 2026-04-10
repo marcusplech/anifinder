@@ -8,11 +8,12 @@
 .open.menu {
   transform: scale(0);
   transition: all 0.3s ease;
-  background: rgb(251, 251, 251);
-  border-radius: 6px;
+  background: #ffffff;
+  border-radius: var(--af-radius-sm);
+  border: 1px solid var(--af-field-border, #c5cfdb);
   box-shadow:
-    0 14px 30px rgba(103, 132, 187, 0.15),
-    0 4px 4px rgba(103, 132, 187, 0.05);
+    var(--af-shadow-md),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
   left: 0;
   position: absolute;
   top: calc(100% + 10px);
@@ -33,18 +34,18 @@
   }
 }
 .group-title {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06rem;
-  padding: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 6px 4px;
   text-transform: uppercase;
   user-select: none;
-  color: #5c728a;
+  color: var(--af-text-muted);
 }
 .option {
   cursor: pointer;
-  border-radius: 4px;
-  color: rgb(116, 136, 153);
+  border-radius: 8px;
+  color: var(--af-text-muted);
   font-size: 14px;
   font-weight: 600;
   padding: 10px 12px;
@@ -54,6 +55,6 @@
   white-space: normal;
 }
 .option:hover {
-  color: rgb(61, 180, 242);
-  background: rgba(237, 241, 245, 0.6);
+  color: var(--af-accent);
+  background: rgba(99, 102, 241, 0.08);
 }

@@ -10,7 +10,7 @@ const SignupPage = () => {
   return (
     <div className="form-content">
       <div className="form-container">
-        <div className="form-title">Sign up to AniList</div>
+        <div className="form-title">Crie sua conta no AniFinder</div>
         <Form />
       </div>
     </div>

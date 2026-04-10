@@ -5,7 +5,9 @@
   left: 0;
   top: 0;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -22,29 +24,31 @@
   }
 }
 .modal-container {
-  border-radius: 20px;
-  background-color: #fff;
+  border-radius: var(--af-radius);
+  background-color: var(--af-surface);
   width: 30%;
-  box-shadow: 1px 1px 5px rgb(0 0 0 / 30%);
+  border: 1px solid var(--af-border-soft);
+  box-shadow: var(--af-shadow-lg);
   z-index: 101;
   transition: all 0.3s ease-out;
   margin-top: 70px;
+  overflow: hidden;
 }
 .signup-img img {
   width: 100%;
-  border-radius: 20px 20px 0 0;
+  border-radius: var(--af-radius) var(--af-radius) 0 0;
 }
 .signup-message {
   font-size: 13px;
-  color: #797979;
-  font-family: "Open Sans", sans-serif;
+  color: var(--af-text-muted);
+  font-family: var(--font-overpass), "Open Sans", sans-serif;
   margin: 15px 0;
 }
 .signup-message.append {
-  color: #504f4f;
+  color: var(--af-text);
 }
 .signup-standout {
-  color: #f3290a;
+  color: #dc2626;
 }
 .signup-standout.e-mail,
 .signup-standout.project {

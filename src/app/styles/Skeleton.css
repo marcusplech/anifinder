@@ -1,0 +1,59 @@
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.skeleton-shimmer-fill {
+  background: linear-gradient(
+    105deg,
+    #e2e8f0 0%,
+    #f1f5f9 42%,
+    #e2e8f0 88%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.15s ease-in-out infinite;
+}
+
+.skeleton-card {
+  display: grid;
+  grid-template-rows: min-content auto;
+  width: 185px;
+  max-width: 100%;
+}
+
+.skeleton-card-poster {
+  height: 265px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--af-shadow-sm), 0 0 0 1px var(--af-border-soft);
+}
+
+.skeleton-card-title {
+  margin-top: 10px;
+  height: 14px;
+  width: 88%;
+  border-radius: 6px;
+}
+
+.skeleton-section-title {
+  height: 14px;
+  width: 160px;
+  max-width: 70%;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 1040px) {
+  .skeleton-card {
+    width: 100%;
+  }
+
+  .skeleton-card-poster {
+    height: auto;
+    aspect-ratio: 185 / 265;
+  }
+}

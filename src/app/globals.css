@@ -3,6 +3,7 @@
 @import "./styles/Navbar.css";
 @import "./styles/Footer.css";
 @import "./styles/Landing.css";
+@import "./styles/HomePage.css";
 @import "./styles/Search.css";
 @import "./styles/Dropdown.css";
 @import "./styles/HomeCards.css";
@@ -10,3 +11,4 @@
 @import "./styles/AnimeDetails.css";
 @import "./styles/SignupForm.css";
 @import "./styles/SignupModal.css";
+@import "./styles/Skeleton.css";

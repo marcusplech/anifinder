@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Card, { CardAttributes } from "./Card";
-import LoadingSpinner from "@/components/Layout/LoadingSpinner";
+import { HomeCardsSkeleton } from "@/components/Layout/AnimeGridSkeleton";
 import { getAiringAnime, getComingAnime, getRatedAnime, getTrendingAnime } from "@/lib/KitsuClient";
 import { KitsuResource } from "@/lib/KitsuTypes";
 import { queryKeys } from "@/lib/QueryKeys";
@@ -32,13 +32,13 @@ const HomeCards = () => {
   const loading = isTrendingLoading || isAiringLoading || isRatedLoading || isComingLoading;
 
   return loading ? (
-    <LoadingSpinner />
+    <HomeCardsSkeleton />
   ) : (
     <div className="search-landing">
       <div className="container">
-        <div className="landing-section">
+        <div className="landing-section home-rail home-rail--trending">
           <div className="title-link">
-            <h3>Trending Now</h3>
+            <h3>Em alta agora</h3>
           </div>
           <div className="results">
             {stateTrending.map((data) => (
@@ -46,9 +46,9 @@ const HomeCards = () => {
             ))}
           </div>
         </div>
-        <div className="landing-section">
+        <div className="landing-section home-rail home-rail--airing">
           <div className="title-link">
-            <h3>Top Airing Anime</h3>
+            <h3>No ar esta temporada</h3>
           </div>
           <div className="results">
             {stateAiring.map((data) => (
@@ -56,9 +56,9 @@ const HomeCards = () => {
             ))}
           </div>
         </div>
-        <div className="landing-section">
+        <div className="landing-section home-rail home-rail--rated">
           <div className="title-link">
-            <h3>Highest Rated Anime</h3>
+            <h3>Melhor avaliados</h3>
           </div>
           <div className="results">
             {stateRated.map((data) => (
@@ -66,9 +66,9 @@ const HomeCards = () => {
             ))}
           </div>
         </div>
-        <div className="landing-section">
+        <div className="landing-section home-rail home-rail--coming">
           <div className="title-link">
-            <h3>Upcoming Anime</h3>
+            <h3>Em breve</h3>
           </div>
           <div className="results">
             {stateComing.map((data) => (

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimeAttributes } from "@/lib/KitsuTypes";
+import { statusLabelPt } from "@/lib/statusLabelPt";
 
 export type CardAttributes = AnimeAttributes;
 
@@ -15,10 +16,10 @@ const Card = ({ attributes }: CardProps) => {
   if (!image || !slug || !canonicalTitle) return null;
 
   const epiCount = () => {
-    if (!episodeCount) return "Episode";
-    if (episodeCount > 1) return `${episodeCount} Episodes`;
-    if (episodeCount === 1) return `${episodeCount} Episode`;
-    return "Episode";
+    if (!episodeCount) return "Episódio";
+    if (episodeCount > 1) return `${episodeCount} episódios`;
+    if (episodeCount === 1) return `${episodeCount} episódio`;
+    return "Episódio";
   };
 
   return (
@@ -55,18 +56,18 @@ const Card = ({ attributes }: CardProps) => {
                 fill="currentColor"
               />
             </svg>
-            <span className="percentage">{averageRating ? `${averageRating}%` : "N/A"}</span>
+            <span className="percentage">{averageRating ? `${averageRating}%` : "—"}</span>
           </div>
         </div>
-        <div className="studios">{ageRatingGuide ?? "Unrated"}</div>
+        <div className="studios">{ageRatingGuide ?? "Sem classificação"}</div>
         <div className="info">
-          <span>{subtype ?? "Unknown"}</span>
+          <span>{subtype ?? "Desconhecido"}</span>
           <span className="separator" style={{ padding: "0 4px" }}>
             •
           </span>
           <span>{epiCount()}</span>
           <div className="genres">
-            <div className="genre">{status ?? "Unknown"}</div>
+            <div className="genre">{statusLabelPt(status)}</div>
           </div>
         </div>
       </div>

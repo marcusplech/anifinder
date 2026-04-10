@@ -10,7 +10,7 @@ import {
   KitsuListResponse,
   KitsuResource,
 } from "@/lib/KitsuTypes";
-import LoadingSpinner from "@/components/Layout/LoadingSpinner";
+import { ResultsGridSkeleton } from "@/components/Layout/AnimeGridSkeleton";
 import Card, { CardAttributes } from "./Card";
 import FilterSelect from "./FilterSelect";
 
@@ -20,7 +20,6 @@ interface SearchProps {
   search: Dispatch<SetStateAction<SearchResultItem[]>>;
 }
 type FilterKey = "genres" | "year" | "format" | "airing";
-type DropdownType = "Genres" | "Format" | "Airing" | "Year" | null;
 
 const areSameResults = (a: SearchResultItem[], b: SearchResultItem[]) => {
   if (a.length !== b.length) return false;
@@ -29,6 +28,22 @@ const areSameResults = (a: SearchResultItem[], b: SearchResultItem[]) => {
   }
   return true;
 };
+
+const FORMAT_OPTIONS = [
+  { key: "TV", label: "TV" },
+  { key: "Movie", label: "Filme" },
+  { key: "Special", label: "Especial" },
+  { key: "OVA", label: "OVA" },
+  { key: "ONA", label: "ONA" },
+  { key: "Music", label: "Música" },
+];
+
+const AIRING_OPTIONS = [
+  { key: "Finished", label: "Finalizado" },
+  { key: "Current", label: "Em exibição" },
+  { key: "Unreleased", label: "Não lançado" },
+  { key: "TBA", label: "A definir" },
+];
 
 const Search = ({ search }: SearchProps) => {
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
@@ -39,7 +54,7 @@ const Search = ({ search }: SearchProps) => {
   });
   const [text, setText] = useState("");
   const [debouncedText, setDebouncedText] = useState("");
-  const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
+  const [openDropdown, setOpenDropdown] = useState<FilterKey | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
 
   const { data: genresData } = useQuery<KitsuListResponse<GenreAttributes>>({
@@ -48,13 +63,9 @@ const Search = ({ search }: SearchProps) => {
   });
   const stateGenres: GenreItem[] = genresData?.data ?? [];
   const arrYears = Array.from({ length: 40 }, (_, i) => 2022 - i);
-  const formats = ["TV", "Movie", "Special", "OVA", "ONA", "Music"];
-  const airingStatus = ["Finished", "Current", "Unreleased", "TBA"];
 
   const setFilter = (key: FilterKey) => (value: string) =>
     setFilters((prev) => ({ ...prev, [key]: value }));
-
-  const openDropDown = (type: DropdownType) => setOpenDropdown(type);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -111,12 +122,10 @@ const Search = ({ search }: SearchProps) => {
     <Card key={result.id} attributes={result.attributes} />
   ));
   const genreOptions = stateGenres.map((genre) => ({
-    key: genre.attributes.name ?? genre.id,
+    key: String(genre.attributes.name ?? genre.id),
     label: genre.attributes.name ?? "",
   }));
   const yearOptions = arrYears.map((year) => ({ key: String(year), label: String(year) }));
-  const formatOptions = formats.map((format) => ({ key: format, label: format }));
-  const airingOptions = airingStatus.map((status) => ({ key: status, label: status }));
 
   return (
     <div className="search">
@@ -124,7 +133,7 @@ const Search = ({ search }: SearchProps) => {
         <div className="filters-wrap">
           <div ref={ref} className="filters">
             <div className="filter-select">
-              <div className="name">Search</div>
+              <div className="name">Buscar</div>
               <div className="search-wrap">
                 <Image
                   src="/images/icons-search.svg"
@@ -135,9 +144,9 @@ const Search = ({ search }: SearchProps) => {
                   className="search-icon"
                 />
                 <input
-                  aria-label="Search anime"
-                  placeholder="Search..."
-                  onClick={() => openDropDown(null)}
+                  aria-label="Buscar anime"
+                  placeholder="Buscar títulos…"
+                  onClick={() => setOpenDropdown(null)}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   type="search"
@@ -147,44 +156,45 @@ const Search = ({ search }: SearchProps) => {
               </div>
             </div>
             <FilterSelect
-              label="Genres"
-              dropdownTitle="Genres"
+              label="Gênero"
+              dropdownTitle="Gêneros"
               value={filters.genres}
-              open={openDropdown === "Genres"}
-              onOpen={() => openDropDown("Genres")}
-              onToggle={(open) => setOpenDropdown(open ? "Genres" : null)}
+              open={openDropdown === "genres"}
+              onOpen={() => setOpenDropdown("genres")}
+              onToggle={(open) => setOpenDropdown(open ? "genres" : null)}
               onChange={setFilter("genres")}
               options={genreOptions}
+              allowTyping
             />
             <FilterSelect
-              label="Year"
-              dropdownTitle="Years"
+              label="Ano"
+              dropdownTitle="Anos"
               value={filters.year}
-              open={openDropdown === "Year"}
-              onOpen={() => openDropDown("Year")}
-              onToggle={(open) => setOpenDropdown(open ? "Year" : null)}
+              open={openDropdown === "year"}
+              onOpen={() => setOpenDropdown("year")}
+              onToggle={(open) => setOpenDropdown(open ? "year" : null)}
               onChange={setFilter("year")}
               options={yearOptions}
             />
             <FilterSelect
-              label="Format"
-              dropdownTitle="Format"
+              label="Formato"
+              dropdownTitle="Formato"
               value={filters.format}
-              open={openDropdown === "Format"}
-              onOpen={() => openDropDown("Format")}
-              onToggle={(open) => setOpenDropdown(open ? "Format" : null)}
+              open={openDropdown === "format"}
+              onOpen={() => setOpenDropdown("format")}
+              onToggle={(open) => setOpenDropdown(open ? "format" : null)}
               onChange={setFilter("format")}
-              options={formatOptions}
+              options={FORMAT_OPTIONS}
             />
             <FilterSelect
-              label="Airing Status"
-              dropdownTitle="Airing"
+              label="Status de exibição"
+              dropdownTitle="Status"
               value={filters.airing}
-              open={openDropdown === "Airing"}
-              onOpen={() => openDropDown("Airing")}
-              onToggle={(open) => setOpenDropdown(open ? "Airing" : null)}
+              open={openDropdown === "airing"}
+              onOpen={() => setOpenDropdown("airing")}
+              onToggle={(open) => setOpenDropdown(open ? "airing" : null)}
               onChange={setFilter("airing")}
-              options={airingOptions}
+              options={AIRING_OPTIONS}
             />
           </div>
         </div>
@@ -194,11 +204,11 @@ const Search = ({ search }: SearchProps) => {
               {results ? (
                 <div className="results">{renderedAnime}</div>
               ) : (
-                <h2 className="no-results">No Results</h2>
+                <h2 className="no-results">Nenhum resultado</h2>
               )}
             </div>
           ) : (
-            <LoadingSpinner />
+            <ResultsGridSkeleton count={12} />
           )}
         </div>
       </div>

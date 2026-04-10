@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     default: "AniFinder",
     template: "%s | AniFinder",
   },
-  description: "The next-generation anime platform",
+  description: "Descubra anime com busca e filtros usando o catálogo Kitsu.",
   openGraph: {
     title: "AniFinder",
-    description: "The next-generation anime platform",
+    description: "Descubra anime com busca e filtros usando o catálogo Kitsu.",
     url: siteUrl,
     siteName: "AniFinder",
     locale: "pt_BR",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AniFinder",
-    description: "The next-generation anime platform",
+    description: "Descubra anime com busca e filtros usando o catálogo Kitsu.",
   },
 };
 

@@ -4,9 +4,9 @@ test("home renders and opens anime detail", async ({ page }) => {
   await page.goto("/");
 
   await expect(
-    page.getByRole("heading", { name: /next-generation anime platform/i })
+    page.getByRole("heading", { name: /próximo anime favorito/i })
   ).toBeVisible();
-  await expect(page.getByLabel("Search anime")).toBeVisible();
+  await expect(page.getByLabel("Buscar anime")).toBeVisible();
 
   const firstAnime = page.locator("a.media-card").first();
   await expect(firstAnime).toBeVisible({ timeout: 20000 });

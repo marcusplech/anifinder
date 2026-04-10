@@ -15,21 +15,27 @@ interface FilterSelectProps {
   onToggle: (open: boolean) => void;
   onChange: (value: string) => void;
   options: FilterOption[];
+  /** Permite digitar no campo (ex.: gênero). Caso falso, o valor exibido usa o rótulo traduzido. */
+  allowTyping?: boolean;
 }
 
 const FilterSelect = ({
   label,
   dropdownTitle,
   value,
-  placeholder = "Any",
+  placeholder = "Qualquer",
   open,
   onOpen,
   onToggle,
   onChange,
   options,
+  allowTyping = false,
 }: FilterSelectProps) => {
+  const displayValue =
+    allowTyping || !options.length ? value : (options.find((o) => o.key === value)?.label ?? value);
+
   const optionNodes = options.map((option) => (
-    <div key={option.key} onClick={() => onChange(option.label)} className="option">
+    <div key={option.key} onClick={() => onChange(option.key)} className="option">
       {option.label}
     </div>
   ));
@@ -42,8 +48,9 @@ const FilterSelect = ({
           <div className="value-wrap">
             <input
               onClick={onOpen}
-              onChange={(e) => onChange(e.target.value)}
-              value={value}
+              onChange={allowTyping ? (e) => onChange(e.target.value) : undefined}
+              readOnly={!allowTyping}
+              value={displayValue}
               placeholder={placeholder}
               type="search"
               autoComplete="off"

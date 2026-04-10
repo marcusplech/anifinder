@@ -18,7 +18,7 @@ const NavBar = () => {
         <Link href="/" className="icon-logo">
           <Image
             src="/images/logo.svg"
-            alt="AniFinder logo"
+            alt="Logotipo AniFinder"
             width={150}
             height={50}
             priority
@@ -27,12 +27,12 @@ const NavBar = () => {
         </Link>
         <div className="links">
           <div className="browse-wrap">
-            <span className="link">Browse</span>
+            <span className="link">Explorar</span>
             <span className="link">Social</span>
-            <span className="link">Forum</span>
-            <span className="link-login">Login</span>
+            <span className="link">Fórum</span>
+            <span className="link-login">Entrar</span>
             <Link href="/signup" className="link-signup">
-              Sign Up
+              Cadastrar-se
             </Link>
           </div>
         </div>

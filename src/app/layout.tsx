@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Overpass, Roboto } from "next/font/google";
 import Providers from "./Providers";
 import "./globals.css";
-import NavBar from "@/components/Layout/NavBar";
-import Footer from "@/components/Layout/Footer";
+import NavBar from "@/components/layout/NavBar";
+import Footer from "@/components/layout/Footer";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const overpass = Overpass({ subsets: ["latin"], variable: "--font-overpass", display: "swap" });

@@ -1,4 +1,4 @@
-import { HomeCardsSkeleton } from "@/components/Layout/AnimeGridSkeleton";
+import { HomeCardsSkeleton } from "@/components/layout/AnimeGridSkeleton";
 
 export default function Loading() {
   return (

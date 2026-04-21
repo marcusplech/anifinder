@@ -69,14 +69,20 @@ const Card = ({ attributes }: CardProps) => {
         <div className="space-y-4 px-5 py-4 text-slate-600">
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-orange-200/80 bg-orange-50 px-3 py-2">
-              <p className="text-[11px] font-bold uppercase tracking-wide text-orange-600">Classificação</p>
+              <p className="text-[11px] font-bold uppercase tracking-wide text-orange-600">
+                Classificação
+              </p>
               <p className="mt-1 text-sm font-bold text-orange-700">
                 {ageRatingGuide ?? "Sem classificação"}
               </p>
             </div>
             <div className="rounded-xl border border-slate-200/80 bg-slate-50 px-3 py-2">
-              <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500">Formato</p>
-              <p className="mt-1 text-sm font-semibold text-slate-700">{subtype ?? "Desconhecido"}</p>
+              <p className="text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Formato
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-700">
+                {subtype ?? "Desconhecido"}
+              </p>
             </div>
           </div>
           <div className="flex items-center justify-between border-t border-slate-200 pt-3">

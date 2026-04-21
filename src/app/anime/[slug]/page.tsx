@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import AnimeDetails from "@/components/Anime/AnimeDetails";
+import AnimeDetails from "@/components/anime/AnimeDetails";
 import { getAnimeBySlug } from "@/lib/KitsuClient";
 import { queryKeys } from "@/lib/QueryKeys";
 

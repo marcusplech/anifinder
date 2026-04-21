@@ -10,7 +10,7 @@ import {
   KitsuListResponse,
   KitsuResource,
 } from "@/lib/KitsuTypes";
-import { ResultsGridSkeleton } from "@/components/Layout/AnimeGridSkeleton";
+import { ResultsGridSkeleton } from "@/components/layout/AnimeGridSkeleton";
 import { resultsGridClass } from "@/lib/ui";
 import Card, { CardAttributes } from "./Card";
 import FilterSelect from "./FilterSelect";

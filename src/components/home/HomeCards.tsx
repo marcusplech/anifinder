@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Card, { CardAttributes } from "./Card";
-import { HomeCardsSkeleton } from "@/components/Layout/AnimeGridSkeleton";
+import { HomeCardsSkeleton } from "@/components/layout/AnimeGridSkeleton";
 import { getAiringAnime, getComingAnime, getRatedAnime, getTrendingAnime } from "@/lib/KitsuClient";
 import { KitsuResource } from "@/lib/KitsuTypes";
 import { queryKeys } from "@/lib/QueryKeys";
